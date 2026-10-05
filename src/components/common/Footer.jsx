@@ -120,7 +120,7 @@ export function Footer() {
             </li>
           </ul>
           <div className="mt-5 flex gap-3 text-hero-foreground">
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-accent transition">
+            <a href="https://www.facebook.com/share/1BCJDsUVDg/" target="_blank" rel="noopener noreferrer" aria-label="RR Builder & Developer on Facebook" className="hover:text-accent transition" title="Follow RR Builder on Facebook">
               <FacebookIcon className="h-4 w-4" />
             </a>
             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-accent transition">
