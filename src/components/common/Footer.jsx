@@ -165,13 +165,13 @@ export function Footer() {
 
 export function PageHero({ eyebrow, title, description }) {
   return (
-    <section className="bg-primary py-14 text-hero-foreground sm:py-20">
+    <section className="bg-primary py-10 sm:py-16 text-hero-foreground overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-3 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-5xl">
+        <p className="eyebrow text-xs">{eyebrow}</p>
+        <h1 className="mt-2.5 max-w-3xl font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight break-words">
           {title}
         </h1>
-        <p className="mt-4 max-w-2xl text-sm leading-7 text-hero-muted sm:text-base">
+        <p className="mt-3 max-w-2xl text-xs sm:text-sm leading-relaxed text-hero-muted sm:leading-7">
           {description}
         </p>
       </div>

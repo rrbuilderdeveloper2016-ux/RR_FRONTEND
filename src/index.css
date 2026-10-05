@@ -235,3 +235,13 @@
 .animate-spin-slow {
   animation: slowSpin 14s linear infinite;
 }
+
+/* Offer Banner Container - Luxury Real Estate Style */
+.offer-banner {
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.4), 0 0 0 1px rgba(217, 119, 6, 0.25);
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+.offer-banner:hover {
+  box-shadow: 0 14px 35px -5px rgba(15, 23, 42, 0.5), 0 0 0 1.5px rgba(217, 119, 6, 0.45);
+}

@@ -1,3 +1,4 @@
+import { ShinyText } from '../ShinyText';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Sparkles, FileText } from 'lucide-react';
@@ -128,26 +129,48 @@ export function ConstructionPackages({ onSelectPackage }) {
     <section className="py-16 bg-background">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         {/* Header from Brochure */}
-        <div className="text-center max-w-3xl mx-auto">
-          <p className="eyebrow">TRANSPARENT CONSTRUCTION PACKAGES</p>
-          <h2 className="mt-2 font-display text-3xl sm:text-5xl font-bold text-primary">
+        <div className="text-center max-w-3xl mx-auto px-1 sm:px-4">
+          <p className="eyebrow text-xs">TRANSPARENT CONSTRUCTION PACKAGES</p>
+          <h2 className="mt-2 font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-primary break-words">
             BUILD YOUR DREAM WITH RR
           </h2>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold text-accent-strong tracking-wide uppercase">
+          <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 text-[11px] sm:text-xs font-bold text-accent-strong tracking-wide uppercase">
             <span>Quality Construction</span>
-            <span className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-accent-strong" />
+            <span className="h-1 w-1 rounded-full bg-accent-strong" />
             <span>Transparent Pricing</span>
-            <span className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-accent-strong" />
-            <span>Zero Hidden Escalation</span>
+            <span className="h-1 w-1 rounded-full bg-accent-strong" />
+            <span>Zero Escalation</span>
           </div>
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed px-2">
+          <p className="mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
             Engineered architectural specifications with clear milestone agreements. Explore official stage-wise payment schedules in Hindi or English, or request a customized layout &amp; cost estimate for your plot.
           </p>
 
           {/* Payment Plan Highlight Pill */}
-          <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent-strong text-xs font-semibold text-left sm:text-center">
+          <div className="mt-3.5 inline-flex max-w-full items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent-strong text-xs font-semibold text-center">
             <FileText className="h-3.5 w-3.5 shrink-0" />
-            <span className="line-clamp-2 sm:line-clamp-none">Official Milestone Payment Plan Included (10% Advance · Stage-wise · 5% Handover)</span>
+            <span className="text-[11px] sm:text-xs">Official Milestone Payment Plan (10% Advance · Stage-wise · 5% Handover)</span>
+          </div>
+
+          {/* Premium Animated Promotional Offer Banner */}
+          <div className="mt-7 flex justify-center px-2">
+            <div className="offer-banner relative inline-flex w-full sm:w-auto max-w-3xl items-center justify-center rounded-2xl sm:rounded-full border border-accent/40 bg-gradient-to-r from-primary-deep via-primary to-primary-deep px-5 py-3 sm:px-8 sm:py-3.5 shadow-2xl backdrop-blur-md">
+              <ShinyText
+                text="★ Special Complimentary Offer — Free Designer Modular Kitchen Included"
+                speed={2.5}
+                delay={1}
+                color="#e6ca65"
+                shineColor="#ffffff"
+                spread={120}
+                direction="left"
+                yoyo={false}
+                pauseOnHover={false}
+                disabled={false}
+                className="font-display font-bold text-center tracking-wide leading-relaxed"
+                style={{
+                  fontSize: 'clamp(0.85rem, 2vw, 1.15rem)',
+                }}
+              />
+            </div>
           </div>
         </div>
 
@@ -214,9 +237,19 @@ export function ConstructionPackages({ onSelectPackage }) {
                               <span className="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-amber-700/90 flex items-center gap-1">
                                 ★ Special Complimentary Offer
                               </span>
-                              <strong className="block text-xs sm:text-[13px] font-bold font-display leading-tight text-royal-gold-shimmer royal-badge-glow">
-                                Free Designer Modular Kitchen Included
-                              </strong>
+                              <ShinyText
+                                text="Free Designer Modular Kitchen Included"
+                                speed={2.5}
+                                delay={1}
+                                color="#854d0e"
+                                shineColor="#fbbf24"
+                                spread={100}
+                                direction="left"
+                                className="font-display font-bold text-xs sm:text-[13px] leading-tight block"
+                                style={{
+                                  fontSize: 'clamp(0.78rem, 1.6vw, 0.88rem)',
+                                }}
+                              />
                             </div>
                           </li>
                         );
