@@ -16,8 +16,8 @@ export const navItems = [
 
 export function Brand({ inverse = false }) {
   return (
-    <Link to="/" className="group flex min-w-0 items-center gap-3" aria-label="RR Builder & Developer home">
-      <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-md border border-accent/40 bg-[#091522] p-0.5 shadow-sm transition-transform duration-200 group-hover:scale-105">
+    <Link to="/" className="group flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label="RR Builder & Developer home">
+      <div className="relative h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-hidden rounded-md border border-accent/40 bg-[#091522] p-0.5 shadow-sm transition-transform duration-200 group-hover:scale-105">
         <img
           src={rrLogo}
           alt="RR Builder & Developer Logo"
@@ -25,10 +25,10 @@ export function Brand({ inverse = false }) {
         />
       </div>
       <span className="min-w-0 leading-tight">
-        <strong className={`block truncate text-sm font-bold tracking-wide ${inverse ? 'text-hero-foreground' : 'text-primary'}`}>
+        <strong className={`block truncate text-xs sm:text-sm font-bold tracking-wide ${inverse ? 'text-hero-foreground' : 'text-primary'}`}>
           RR BUILDER &amp; DEVELOPER
         </strong>
-        <span className={`block text-[10px] font-bold tracking-[0.18em] ${inverse ? 'text-accent' : 'text-muted-foreground'}`}>
+        <span className={`block text-[9px] sm:text-[10px] font-bold tracking-[0.16em] ${inverse ? 'text-accent' : 'text-muted-foreground'}`}>
           INDORE • SINCE 2016
         </span>
       </span>

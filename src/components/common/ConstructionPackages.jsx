@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Check, Sparkles, FileText, Gift } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, FileText } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { PaymentPlanModal } from './PaymentPlanModal';
 
@@ -67,7 +67,7 @@ export const packages = [
       '3-Coat Birla wall putty with premium weather-shield exterior paint',
       'Premium flush doors, heavy Domal series sliding windows & reinforced designer grills',
       'Fire-resistant concealed copper wiring with luxury modular switches',
-      'Free Luxury Modular Kitchen Included',
+      'Free Designer Modular Kitchen Included',
     ],
   },
   {
@@ -88,7 +88,7 @@ export const packages = [
       'Centralized solar water heater insulated piping system',
       'Moisture-resistant PVC / POP designer ceiling in stilt parking area',
       'Elite touch-grade modular smart switches & high-load distribution panel',
-      'Free Ultra-Luxury Modular Kitchen Included',
+      'Free Designer Modular Kitchen Included',
     ],
   },
   {
@@ -133,25 +133,25 @@ export function ConstructionPackages({ onSelectPackage }) {
           <h2 className="mt-2 font-display text-3xl sm:text-5xl font-bold text-primary">
             BUILD YOUR DREAM WITH RR
           </h2>
-          <div className="mt-3 flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-accent-strong tracking-wide uppercase">
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold text-accent-strong tracking-wide uppercase">
             <span>Quality Construction</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-strong" />
+            <span className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-accent-strong" />
             <span>Transparent Pricing</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-strong" />
+            <span className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-accent-strong" />
             <span>Zero Hidden Escalation</span>
           </div>
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-            Engineered architectural specifications with clear milestone agreements. Explore official stage-wise payment schedules in Hindi or English, or request a customized layout & cost estimate for your plot.
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed px-2">
+            Engineered architectural specifications with clear milestone agreements. Explore official stage-wise payment schedules in Hindi or English, or request a customized layout &amp; cost estimate for your plot.
           </p>
 
           {/* Payment Plan Highlight Pill */}
-          <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent-strong text-xs font-semibold">
-            <FileText className="h-3.5 w-3.5" />
-            <span>Official Milestone Payment Plan Included (10% Advance · Stage-wise Progress · 5% Handover)</span>
+          <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent-strong text-xs font-semibold text-left sm:text-center">
+            <FileText className="h-3.5 w-3.5 shrink-0" />
+            <span className="line-clamp-2 sm:line-clamp-none">Official Milestone Payment Plan Included (10% Advance · Stage-wise · 5% Handover)</span>
           </div>
         </div>
 
-        {/* 5 Package Cards - Responsive Grid */}
+        {/* 5 Package Cards - Fully Mobile Responsive Grid */}
         <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-stretch">
           {packages.map((pkg) => {
             const isSelected = selectedId === pkg.id;
@@ -164,7 +164,7 @@ export function ConstructionPackages({ onSelectPackage }) {
                 }}
                 className={`relative flex flex-col rounded-md border-2 transition-all duration-300 cursor-pointer overflow-hidden ${
                   pkg.popular
-                    ? 'border-accent shadow-xl xl:-translate-y-2 ring-2 ring-accent/20'
+                    ? 'border-accent shadow-xl xl:-translate-y-2 ring-2 ring-accent/25'
                     : isSelected
                     ? 'border-primary shadow-lg'
                     : 'border-border bg-card shadow-sm hover:border-primary/50'
@@ -203,20 +203,20 @@ export function ConstructionPackages({ onSelectPackage }) {
                         return (
                           <li
                             key={i}
-                            className="mt-3 relative overflow-hidden rounded-md border border-amber-400 bg-gradient-to-r from-amber-500/15 via-yellow-300/35 to-amber-500/15 p-2.5 shadow-sm animate-gold-shimmer"
+                            className="mt-3.5 pt-3 border-t border-accent/40 flex items-start gap-2.5"
                           >
-                            <div className="flex items-center gap-2">
-                              <span className="relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-sm animate-bounce-subtle">
-                                <Gift className="h-3.5 w-3.5" />
+                            <div className="relative mt-0.5 shrink-0 royal-badge-glow">
+                              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-300 text-white shadow-sm ring-1 ring-amber-400/40">
+                                <Sparkles className="h-3 w-3 animate-spin-slow text-amber-950" />
                               </span>
-                              <div className="min-w-0">
-                                <span className="block text-[10px] font-extrabold uppercase tracking-wider text-amber-800">
-                                  ★ Special Complimentary Offer
-                                </span>
-                                <span className="block font-bold text-xs text-primary leading-tight">
-                                  {feat}
-                                </span>
-                              </div>
+                            </div>
+                            <div className="min-w-0 space-y-0.5">
+                              <span className="block text-[10px] font-extrabold uppercase tracking-[0.16em] text-amber-700/90 flex items-center gap-1">
+                                ★ Special Complimentary Offer
+                              </span>
+                              <strong className="block text-xs sm:text-[13px] font-bold font-display leading-tight text-royal-gold-shimmer royal-badge-glow">
+                                Free Designer Modular Kitchen Included
+                              </strong>
                             </div>
                           </li>
                         );
@@ -236,7 +236,7 @@ export function ConstructionPackages({ onSelectPackage }) {
                     <Button
                       variant={pkg.popular ? 'gold' : 'navy'}
                       size="sm"
-                      className="w-full text-xs min-h-[38px] flex items-center justify-center gap-1.5 shadow-sm font-bold"
+                      className="w-full text-xs min-h-[40px] flex items-center justify-center gap-1.5 shadow-sm font-bold"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleOpenPlanModal(pkg.id);
@@ -249,7 +249,7 @@ export function ConstructionPackages({ onSelectPackage }) {
                     {/* Secondary Quick Action: Select for Estimate */}
                     <button
                       type="button"
-                      className="w-full text-center py-1.5 text-[11px] font-bold text-accent-strong hover:text-primary transition-colors flex items-center justify-center gap-1 min-h-[32px]"
+                      className="w-full text-center py-2 text-[11px] font-bold text-accent-strong hover:text-primary transition-colors flex items-center justify-center gap-1 min-h-[34px]"
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedId(pkg.id);

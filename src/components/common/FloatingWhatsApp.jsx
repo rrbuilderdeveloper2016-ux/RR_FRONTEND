@@ -1,3 +1,4 @@
+import rrLogo from '@/assets/rr-logo.png';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { X, Send, Sparkles, MessageCircle } from 'lucide-react';
@@ -52,13 +53,13 @@ export function FloatingWhatsApp() {
     <aside aria-label="WhatsApp quick chat" className="fixed bottom-6 right-5 sm:right-6 z-40 flex flex-col items-end">
       {/* Expanded Quick Inquiry Chat Popup */}
       {isOpen && (
-        <div className="mb-3 w-80 sm:w-96 rounded-lg bg-card border border-border shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
+        <div className="mb-3 w-[calc(100vw-2.5rem)] max-w-sm sm:w-96 rounded-lg bg-card border border-border shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
           {/* Header */}
           <div className="bg-[#075E54] text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-base border border-white/30 text-white">
-                  RR
+                <div className="h-10 w-10 rounded-full overflow-hidden bg-black/40 flex items-center justify-center border border-white/30 p-0.5 shadow-sm">
+                  <img src={rrLogo} alt="RR" className="h-full w-full object-contain" />
                 </div>
                 <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-[#25D366] border-2 border-[#075E54]" />
               </div>
