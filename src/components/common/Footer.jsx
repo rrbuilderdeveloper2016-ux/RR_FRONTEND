@@ -1,3 +1,4 @@
+import { FloatingWhatsApp } from './FloatingWhatsApp';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
@@ -222,6 +223,7 @@ export function PageLayout({ children }) {
       <Navbar />
       <main className="flex-1 min-w-0 overflow-x-clip">{children}</main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }

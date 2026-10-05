@@ -67,7 +67,7 @@ export function Navbar() {
             +91 6232570809
           </a>
           <a
-            href="https://wa.me/916232570809"
+            href="https://wa.me/916232570809?text=Hello%20RR%20Builders%20Indore!%20I%20visited%20your%20website%20and%20want%20to%20inquire%20about%20Construction%20Packages%20%2F%20Property%20in%20Indore.%20Please%20guide%20me."
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-sm border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition hover:bg-muted"
@@ -126,7 +126,7 @@ export function Navbar() {
                 +91 6232570809
               </a>
               <a
-                href="https://wa.me/916232570809"
+                href="https://wa.me/916232570809?text=Hello%20RR%20Builders%20Indore!%20I%20visited%20your%20website%20and%20want%20to%20inquire%20about%20Construction%20Packages%20%2F%20Property%20in%20Indore.%20Please%20guide%20me."
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-sm border border-border bg-muted py-2 text-sm font-semibold"
