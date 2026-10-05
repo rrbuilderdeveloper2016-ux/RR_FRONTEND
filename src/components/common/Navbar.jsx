@@ -1,3 +1,4 @@
+import rrLogo from '@/assets/rr-logo.png';
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
@@ -15,17 +16,20 @@ export const navItems = [
 
 export function Brand({ inverse = false }) {
   return (
-    <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="RR Builder & Developer home">
-      <span className="relative grid h-11 w-11 shrink-0 place-items-center border-x-2 border-accent font-display text-xl font-bold text-accent">
-        <span className="absolute -top-1 left-1/2 h-4 w-8 -translate-x-1/2 -skew-y-12 border-t-2 border-accent" />
-        RR
-      </span>
+    <Link to="/" className="group flex min-w-0 items-center gap-3" aria-label="RR Builder & Developer home">
+      <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-md border border-accent/40 bg-[#091522] p-0.5 shadow-sm transition-transform duration-200 group-hover:scale-105">
+        <img
+          src={rrLogo}
+          alt="RR Builder & Developer Logo"
+          className="h-full w-full object-contain"
+        />
+      </div>
       <span className="min-w-0 leading-tight">
         <strong className={`block truncate text-sm font-bold tracking-wide ${inverse ? 'text-hero-foreground' : 'text-primary'}`}>
           RR BUILDER &amp; DEVELOPER
         </strong>
-        <span className={`block text-[10px] font-bold tracking-[0.2em] ${inverse ? 'text-accent' : 'text-muted-foreground'}`}>
-          INDORE
+        <span className={`block text-[10px] font-bold tracking-[0.18em] ${inverse ? 'text-accent' : 'text-muted-foreground'}`}>
+          INDORE • SINCE 2016
         </span>
       </span>
     </Link>

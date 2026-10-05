@@ -1,3 +1,4 @@
+import rrLogo from '@/assets/rr-logo.png';
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
@@ -371,8 +372,12 @@ export function AdminPage() {
       <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-primary text-accent font-bold font-display text-lg shadow-sm">
-              RR
+            <div className="h-10 w-10 overflow-hidden rounded-md border border-accent/30 bg-[#091522] p-0.5 shadow-sm">
+              <img
+                src={rrLogo}
+                alt="RR Builder & Developer"
+                className="h-full w-full object-contain"
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">

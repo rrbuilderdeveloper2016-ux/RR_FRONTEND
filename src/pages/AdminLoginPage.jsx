@@ -1,3 +1,4 @@
+import rrLogo from '@/assets/rr-logo.png';
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Lock, Mail, Eye, EyeOff, ShieldCheck, ArrowRight, Building2, AlertCircle } from 'lucide-react';
@@ -32,8 +33,12 @@ export function AdminLoginPage() {
       <div className="w-full max-w-md rounded-md border border-border bg-card p-8 shadow-2xl space-y-6">
         {/* Brand Header */}
         <div className="text-center space-y-2">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-sm bg-primary text-accent shadow-md">
-            <span className="font-display text-2xl font-bold">RR</span>
+          <div className="mx-auto h-20 w-20 overflow-hidden rounded-xl border-2 border-accent/40 bg-[#091522] p-1 shadow-xl">
+            <img
+              src={rrLogo}
+              alt="RR Builder & Developer"
+              className="h-full w-full object-contain"
+            />
           </div>
           <h2 className="font-display text-2xl font-bold text-primary">
             Admin Portal Login
