@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Check, Sparkles, FileText, Eye } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, FileText } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { PaymentPlanModal } from './PaymentPlanModal';
 
@@ -16,11 +16,15 @@ export const packages = [
     popular: false,
     planSummary: 'G+1, G+2 & G+3 (6–8 Milestones)',
     features: [
-      'Complete RCC column beam structure',
-      'High-grade red brick / AAC block masonry',
-      'Internal & external rough plastering',
+      'Complete RCC column beam structure & roof',
+      'High-grade red brick, fly ash & AAC block',
       'Underground & overhead water tank core',
+      'Internal & external rough plastering',
       'Base electrical & plumbing conduits',
+      'Good quality cement & high-grade TMT steel',
+      'Dedicated A.C. line piping conduits',
+      'Anti-termite pest control treatment',
+      'Water recharging & earthing system',
     ],
   },
   {
@@ -35,11 +39,14 @@ export const packages = [
     planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
       'Everything in Grey Box',
-      'Vitrified flooring (2×2 ft)',
+      'Vitrified flooring tiles (2×2 ft)',
       'Standard sanitary ware & CP fittings',
-      'Granite kitchen platform with sink',
-      'Internal primer + 2 coats tractor emulsion',
-      'Standard flush doors & aluminum windows',
+      'Granite kitchen platform with sink & stairs',
+      'Putty, primer & quality color',
+      'Standard flush doors, aluminum windows & grills',
+      'Free modular kitchen included',
+      'Branded plumbing material & pipes',
+      'Electrical standard false ceiling',
     ],
   },
   {
@@ -54,12 +61,13 @@ export const packages = [
     planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
       'Everything in Silver',
-      'Premium 4×2 ft vitrified glazed tiles',
-      'Branded plumbing (Jaquar / Cera or equiv.)',
-      'Teak wood main door frame & designer shutter',
+      'Premium vitrified glazed tiles',
+      'Branded plumbing (Jaquar & Plumber)',
+      'Premium granite kitchen with sink & stairs',
+      'Putty, primer & premium weather-shield color',
+      'Premium doors, Domal windows & heavy grills',
+      'Free modular kitchen included',
       'Modular switches & concealed copper wiring',
-      'Weather-shield acrylic external paint',
-      'Anti-termite treatment with warranty',
     ],
   },
   {
@@ -74,12 +82,14 @@ export const packages = [
     planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
       'Everything in Gold',
-      'Italian marble finish / grand vitrified tiles',
-      'Wall-hung WC & thermostatic bath mixers',
+      'Big-size & heavy-thickness vitrified glazed tiles',
+      'Italian marble finish & grand vitrified look',
       'UPVC sound-dampened sliding windows',
-      'False ceiling in living & dining areas',
-      'Solar water heater piping & rainwater harvesting',
-      'Dedicated supervisor & daily photo updates',
+      'Designer false ceiling in living & dining area',
+      'Solar water heater piping provision',
+      'PVC / POP ceiling in parking area',
+      'High-end luxury electrical switches',
+      'Free luxury modular kitchen included',
     ],
   },
   {
@@ -93,7 +103,7 @@ export const packages = [
     popular: false,
     planSummary: 'Commercial G+3 (12 Milestones)',
     features: [
-      'Heavy-load RCC structural design',
+      'Heavy-load RCC structural design & roof',
       'High footfall commercial tile / stone flooring',
       'Ample fire safety provisions & stairways',
       'Glass façade / commercial elevation framing',
@@ -185,11 +195,11 @@ export function ConstructionPackages({ onSelectPackage }) {
 
                 {/* Features list */}
                 <div className="p-5 flex-1 flex flex-col justify-between bg-card text-xs">
-                  <ul className="space-y-2.5">
+                  <ul className="space-y-2">
                     {pkg.features.map((feat, i) => (
                       <li key={i} className="flex items-start gap-2 text-muted-foreground">
                         <Check className="h-3.5 w-3.5 text-accent-strong shrink-0 mt-0.5" />
-                        <span className="leading-tight">{feat}</span>
+                        <span className="leading-snug">{feat}</span>
                       </li>
                     ))}
                   </ul>

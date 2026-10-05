@@ -6,9 +6,9 @@ import { Button } from '../ui/Button';
 export const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Our Projects', to: '/our-projects' },
+  { label: 'Build on My Plot', to: '/build-on-my-plot' },
   { label: 'Buy Property', to: '/buy-property' },
   { label: 'Sell Property', to: '/sell-property' },
-  { label: 'Build on My Plot', to: '/build-on-my-plot' },
   { label: 'About Us', to: '/about-us' },
   { label: 'Contact', to: '/contact' },
 ];

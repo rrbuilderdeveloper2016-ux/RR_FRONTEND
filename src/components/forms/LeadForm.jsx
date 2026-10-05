@@ -191,7 +191,7 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
         className="w-full"
         disabled={loading}
       >
-        {loading ? 'Submitting...' : selling ? 'Submit Property Listing' : 'Get Cost Estimate'}
+        {loading ? 'Submitting...' : selling ? 'Submit Property Listing' : 'Request for a Cost Estimate'}
       </Button>
     </form>
   );

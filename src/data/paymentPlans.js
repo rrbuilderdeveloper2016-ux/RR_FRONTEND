@@ -85,8 +85,8 @@ export const paymentPlansData = {
     categoryHi: 'मोस्ट पॉपुलर टर्नकी फिनिशिंग पैकेज',
     supportedFloors: ['G+1', 'G+2'],
     defaultFloor: 'G+1',
-    description: 'Premium branded finishes, teak main door, anti-termite and designer tiles.',
-    descriptionHi: 'प्रीमियम ब्रांडेड फिटिंग्स, सागवान मेन डोर, एंटी-टर्माइट एवं ग्लैज्ड टाइल्स।',
+    description: 'Premium branded finishes, Domal windows, free modular kitchen and designer tiles.',
+    descriptionHi: 'प्रीमियम ब्रांडेड फिटिंग्स, डोमल विंडोज, फ्री मॉड्यूलर किचन एवं ग्लैज्ड टाइल्स।',
     plans: {
       'G+1': [
         { milestone: 'Advance Payment', milestoneHi: 'एडवांस पेमेंट (बुकिंग)', percent: 10 },
