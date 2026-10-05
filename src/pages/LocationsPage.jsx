@@ -33,7 +33,7 @@ export function LocationsPage() {
                 <img
                   src={index % 2 === 0 ? indoreImage : servicesImage}
                   alt={loc.name}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                  className="h-full w-full object-cover"
                   loading="lazy"
                 />
               </div>

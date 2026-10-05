@@ -11,7 +11,7 @@ export function ProjectCard({ project }) {
         <img
           src={projectsImage}
           alt={project.name}
-          className="crop-project-image transition duration-500 group-hover:scale-[1.08]"
+          className="crop-project-image"
           loading="lazy"
         />
         <span className="absolute left-3 top-3 rounded-sm bg-primary px-2.5 py-1 text-[11px] font-bold text-hero-foreground shadow">
