@@ -82,7 +82,6 @@ export const packages = [
     planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
       'Everything in Gold',
-      'Big-size & heavy-thickness vitrified glazed tiles',
       'Italian marble finish & grand vitrified look',
       'UPVC sound-dampened sliding windows',
       'Designer false ceiling in living & dining area',
