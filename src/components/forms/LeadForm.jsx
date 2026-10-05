@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { inquiryService } from '../../services/inquiryService';
 import { Input } from '../ui/Input';
 import { Textarea } from '../ui/Textarea';
 import { Button } from '../ui/Button';
 import { SuccessMessage } from '../common/Footer';
+import { Check, Sparkles } from 'lucide-react';
 
-export function LeadForm({ selling = false }) {
+export function LeadForm({ selling = false, selectedPackage = null }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -20,6 +21,17 @@ export function LeadForm({ selling = false }) {
   });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    if (selectedPackage && !selling) {
+      setFormData((prev) => ({
+        ...prev,
+        plotSize: selectedPackage.area ? `${selectedPackage.area} sq.ft` : prev.plotSize,
+        budget: selectedPackage.estimatedCost ? `₹${Number(selectedPackage.estimatedCost).toLocaleString('en-IN')}` : prev.budget,
+        message: `Inquiring for ${selectedPackage.name} Package (${selectedPackage.rate || ''}${selectedPackage.floor ? `, ${selectedPackage.floor}` : ''}${selectedPackage.area ? `, ${selectedPackage.area} sq.ft` : ''}). Please share detailed architectural layout & milestone contract.`,
+      }));
+    }
+  }, [selectedPackage, selling]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,9 +66,32 @@ export function LeadForm({ selling = false }) {
       onSubmit={handleSubmit}
       className="space-y-4 rounded-sm border border-border bg-card p-6 shadow-card"
     >
-      <h3 className="font-display text-2xl font-bold text-primary">
-        {selling ? 'List Your Property for Sale' : 'Request Construction Estimate'}
-      </h3>
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="font-display text-2xl font-bold text-primary">
+          {selling ? 'List Your Property for Sale' : 'Request Construction Estimate'}
+        </h3>
+      </div>
+
+      {/* Selected Package Indicator */}
+      {selectedPackage && !selling && (
+        <div className="flex items-center justify-between p-3 rounded-sm bg-accent/10 border border-accent/30 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="p-1 rounded bg-accent/20 text-accent-strong">
+              <Sparkles className="h-3.5 w-3.5" />
+            </span>
+            <div>
+              <span className="font-bold text-primary">{selectedPackage.name} PACKAGE</span>
+              <span className="text-muted-foreground ml-2">
+                {selectedPackage.rate} {selectedPackage.floor ? `· ${selectedPackage.floor}` : ''}
+                {selectedPackage.estimatedCost ? ` · Est: ₹${Number(selectedPackage.estimatedCost).toLocaleString('en-IN')}` : ''}
+              </span>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-accent-strong bg-accent/20 px-2 py-0.5 rounded-full">
+            <Check className="h-3 w-3" /> Pre-filled
+          </span>
+        </div>
+      )}
 
       <div className="grid gap-3 sm:grid-cols-2">
         <Input
@@ -112,7 +147,7 @@ export function LeadForm({ selling = false }) {
       <div className="grid gap-3 sm:grid-cols-2">
         <Input
           required
-          placeholder={selling ? 'Property Location in Indore' : 'Plot Location in Indore'}
+          placeholder={selling ? 'Property Location in Indore' : 'Plot Location in Indore (e.g. Super Corridor)'}
           value={formData.plotLocation}
           onChange={(e) => setFormData({ ...formData, plotLocation: e.target.value })}
         />
@@ -130,6 +165,14 @@ export function LeadForm({ selling = false }) {
           />
         )}
       </div>
+
+      {!selling && (
+        <Input
+          placeholder="Approx. Budget (e.g. ₹25 Lakh)"
+          value={formData.budget}
+          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+        />
+      )}
 
       <Textarea
         placeholder={

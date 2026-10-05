@@ -77,7 +77,7 @@ export function BuildOnMyPlotPage() {
           </div>
 
           <div>
-            <LeadForm selling={false} />
+            <LeadForm selling={false} selectedPackage={selectedPackage} />
           </div>
         </div>
       </section>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { ArrowRight, Check, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight, Check, Sparkles, FileText, Eye } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { PaymentPlanModal } from './PaymentPlanModal';
 
 export const packages = [
   {
@@ -12,6 +14,7 @@ export const packages = [
     color: 'from-slate-700 to-slate-900',
     borderColor: 'border-slate-300',
     popular: false,
+    planSummary: 'G+1, G+2 & G+3 (6–8 Milestones)',
     features: [
       'Complete RCC column beam structure',
       'High-grade red brick / AAC block masonry',
@@ -29,6 +32,7 @@ export const packages = [
     color: 'from-slate-500 to-slate-700',
     borderColor: 'border-slate-400',
     popular: false,
+    planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
       'Everything in Grey Box',
       'Vitrified flooring (2×2 ft)',
@@ -47,6 +51,7 @@ export const packages = [
     color: 'from-amber-500 to-yellow-600',
     borderColor: 'border-accent',
     popular: true,
+    planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
       'Everything in Silver',
       'Premium 4×2 ft vitrified glazed tiles',
@@ -66,6 +71,7 @@ export const packages = [
     color: 'from-blue-600 to-indigo-800',
     borderColor: 'border-primary',
     popular: false,
+    planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
       'Everything in Gold',
       'Italian marble finish / grand vitrified tiles',
@@ -85,6 +91,7 @@ export const packages = [
     color: 'from-cyan-700 to-blue-900',
     borderColor: 'border-primary-soft',
     popular: false,
+    planSummary: 'Commercial G+3 (12 Milestones)',
     features: [
       'Heavy-load RCC structural design',
       'High footfall commercial tile / stone flooring',
@@ -97,12 +104,21 @@ export const packages = [
 ];
 
 export function ConstructionPackages({ onSelectPackage }) {
+  const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState('gold');
+  const [modalPackageId, setModalPackageId] = useState('gold');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenPlanModal = (pkgId) => {
+    setSelectedId(pkgId);
+    setModalPackageId(pkgId);
+    setIsModalOpen(true);
+  };
 
   return (
     <section className="py-16 bg-background">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        {/* Header from Brochure Image 2 */}
+        {/* Header from Brochure */}
         <div className="text-center max-w-3xl mx-auto">
           <p className="eyebrow">TRANSPARENT CONSTRUCTION PACKAGES</p>
           <h2 className="mt-2 font-display text-3xl sm:text-5xl font-bold text-primary">
@@ -114,8 +130,14 @@ export function ConstructionPackages({ onSelectPackage }) {
             <span>Transparent Pricing</span>
           </div>
           <p className="mt-3 text-sm text-muted-foreground">
-            Clear specifications with zero hidden escalation. Choose your tier or calculate custom square footage.
+            Clear specifications with zero hidden escalation. Explore official stage-by-stage payment schedules in Hindi or English, or calculate custom budget.
           </p>
+
+          {/* Payment Plan Highlight Pill */}
+          <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent-strong text-xs font-semibold">
+            <FileText className="h-3.5 w-3.5" />
+            <span>Official Milestone Payment Plan Included (10% Advance · Stage-wise · 5% Handover)</span>
+          </div>
         </div>
 
         {/* 5 Package Cards */}
@@ -156,6 +178,9 @@ export function ConstructionPackages({ onSelectPackage }) {
                       <span className="text-xs opacity-90">{pkg.unit}</span>
                     </div>
                   </div>
+                  <div className="mt-2.5 inline-block text-[10px] font-medium bg-black/25 px-2 py-0.5 rounded-full border border-white/15">
+                    {pkg.planSummary}
+                  </div>
                 </div>
 
                 {/* Features list */}
@@ -169,21 +194,41 @@ export function ConstructionPackages({ onSelectPackage }) {
                     ))}
                   </ul>
 
-                  <div className="mt-6 pt-4 border-t border-border">
+                  {/* Actions */}
+                  <div className="mt-6 pt-4 border-t border-border space-y-2">
+                    {/* Primary Button: Explore Payment Plan */}
                     <Button
                       variant={pkg.popular ? 'gold' : 'navy'}
                       size="sm"
-                      className="w-full text-xs"
+                      className="w-full text-xs flex items-center justify-center gap-1.5 shadow-sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenPlanModal(pkg.id);
+                      }}
+                    >
+                      <FileText className="h-3.5 w-3.5" />
+                      Explore Payment Plan
+                    </Button>
+
+                    {/* Secondary Quick Action: Select for Estimate */}
+                    <button
+                      type="button"
+                      className="w-full text-center py-1 text-[11px] font-semibold text-accent-strong hover:text-primary transition-colors flex items-center justify-center gap-1"
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedId(pkg.id);
                         if (onSelectPackage) onSelectPackage(pkg);
                         const el = document.getElementById('estimate-form');
-                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                          navigate('/build');
+                        }
                       }}
                     >
-                      Select {pkg.name}
-                    </Button>
+                      <span>Select for Estimate</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -196,6 +241,14 @@ export function ConstructionPackages({ onSelectPackage }) {
           "More Than Just Construction... We Build Trust"
         </p>
       </div>
+
+      {/* Official Payment Schedule Interactive Modal */}
+      <PaymentPlanModal
+        packageId={modalPackageId}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelectPackage={onSelectPackage}
+      />
     </section>
   );
 }
