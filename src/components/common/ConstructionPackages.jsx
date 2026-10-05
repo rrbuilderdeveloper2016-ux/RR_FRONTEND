@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Check, Sparkles, FileText } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, FileText, Gift } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { PaymentPlanModal } from './PaymentPlanModal';
 
@@ -16,15 +16,15 @@ export const packages = [
     popular: false,
     planSummary: 'G+1, G+2 & G+3 (6–8 Milestones)',
     features: [
-      'Complete RCC column beam structure & roof',
-      'High-grade red brick, fly ash & AAC block',
-      'Underground & overhead water tank core',
-      'Internal & external rough plastering',
-      'Base electrical & plumbing conduits',
-      'Good quality cement & high-grade TMT steel',
-      'Dedicated A.C. line piping conduits',
-      'Anti-termite pest control treatment',
-      'Water recharging & earthing system',
+      'Complete RCC column-beam framework, foundation & high-strength roof slab',
+      'High-grade red brick, fly ash & thermal-insulating AAC block masonry',
+      'ISI-certified Fe-550 TMT high-strength steel & ultra-durable grade cement',
+      'Monolithic underground water sump & overhead concrete water tank core',
+      'Dual-layer internal smooth plastering & weather-resistant external rough finish',
+      'Concealed heavy-duty electrical conduits & PVC plumbing pipeline provisions',
+      'Dedicated concealed copper A.C. pipeline conduits in all rooms',
+      'Anti-termite chemical soil barrier treatment pre & post construction',
+      'Eco-friendly groundwater recharging & deep earthing safety system',
     ],
   },
   {
@@ -32,21 +32,21 @@ export const packages = [
     name: 'SILVER',
     rate: '₹1,599',
     unit: '/sq.ft.',
-    tagline: 'Standard Family Finish',
+    tagline: 'Standard Turnkey Home',
     color: 'from-slate-500 to-slate-700',
     borderColor: 'border-slate-400',
     popular: false,
     planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
-      'Everything in Grey Box',
-      'Vitrified flooring tiles (2×2 ft)',
-      'Standard sanitary ware & CP fittings',
-      'Granite kitchen platform with sink & stairs',
-      'Putty, primer & quality color',
-      'Standard flush doors, aluminum windows & grills',
-      'Free modular kitchen included',
-      'Branded plumbing material & pipes',
-      'Electrical standard false ceiling',
+      'Complete structural core included in Grey Box',
+      'Vitrified flooring tiles with matching border skirting',
+      'Polished granite kitchen platform with stainless steel sink & granite staircase',
+      'Standard branded sanitary ware & chrome-plated (CP) bath fittings',
+      'Multi-coat smooth wall putty, primer & washable premium interior paint',
+      'Durable flush core doors, aluminum sliding windows & safety grills',
+      'Branded concealed plumbing pipelines & leak-proof drainage network',
+      'Standard false ceiling framework & modular electrical conduit system',
+      'Free Designer Modular Kitchen Included',
     ],
   },
   {
@@ -54,20 +54,20 @@ export const packages = [
     name: 'GOLD',
     rate: '₹1,699',
     unit: '/sq.ft.',
-    tagline: 'Most Popular Choice',
+    tagline: 'Most Popular Family Choice',
     color: 'from-amber-500 to-yellow-600',
     borderColor: 'border-accent',
     popular: true,
     planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
-      'Everything in Silver',
-      'Premium vitrified glazed tiles',
-      'Branded plumbing (Jaquar & Plumber)',
-      'Premium granite kitchen with sink & stairs',
-      'Putty, primer & premium weather-shield color',
-      'Premium doors, Domal windows & heavy grills',
-      'Free modular kitchen included',
-      'Modular switches & concealed copper wiring',
+      'Everything included in Silver Turnkey Package',
+      'Premium vitrified glazed tiles with polished nano-finish',
+      'Luxury branded plumbing & bath fittings (Jaquar & Plumber)',
+      'Mirror-polished premium granite kitchen with deep sink & moulded staircase',
+      '3-Coat Birla wall putty with premium weather-shield exterior paint',
+      'Premium flush doors, heavy Domal series sliding windows & reinforced designer grills',
+      'Fire-resistant concealed copper wiring with luxury modular switches',
+      'Free Luxury Modular Kitchen Included',
     ],
   },
   {
@@ -75,20 +75,20 @@ export const packages = [
     name: 'PLATINUM',
     rate: '₹1,799',
     unit: '/sq.ft.',
-    tagline: 'Luxury Living Package',
+    tagline: 'Ultra-Luxury Architectural Spec',
     color: 'from-blue-600 to-indigo-800',
     borderColor: 'border-primary',
     popular: false,
     planSummary: 'G+1 & G+2 (11 Stage Milestones)',
     features: [
-      'Everything in Gold',
-      'Italian marble finish & grand vitrified look',
-      'UPVC sound-dampened sliding windows',
-      'Designer false ceiling in living & dining area',
-      'Solar water heater piping provision',
-      'PVC / POP ceiling in parking area',
-      'High-end luxury electrical switches',
-      'Free luxury modular kitchen included',
+      'Everything included in Gold Premium Package',
+      'Italian marble finish & grand architectural vitrified look',
+      'Sound-insulated UPVC multi-chamber sliding windows with toughened glass',
+      'Designer architectural false ceiling with ambient LED cove lighting in living & dining',
+      'Centralized solar water heater insulated piping system',
+      'Moisture-resistant PVC / POP designer ceiling in stilt parking area',
+      'Elite touch-grade modular smart switches & high-load distribution panel',
+      'Free Ultra-Luxury Modular Kitchen Included',
     ],
   },
   {
@@ -102,12 +102,12 @@ export const packages = [
     popular: false,
     planSummary: 'Commercial G+3 (12 Milestones)',
     features: [
-      'Heavy-load RCC structural design & roof',
-      'High footfall commercial tile / stone flooring',
-      'Ample fire safety provisions & stairways',
-      'Glass façade / commercial elevation framing',
-      'High-capacity power backup conduits',
-      'Executive washrooms on every floor plate',
+      'Heavy-load engineered RCC structural frame designed for commercial dynamic loads',
+      'High-traffic anti-skid commercial vitrified & heavy granite flooring',
+      'Modern architectural glass façade elevation & heavy aluminium structural sections',
+      'Dedicated high-capacity 3-phase power backup conduits & heavy-gauge busbars',
+      'Comprehensive fire safety hydrant lines, fire exits & wide dual stairways',
+      'Executive multi-user restroom & sanitary suites on every floor plate',
     ],
   },
 ];
@@ -137,20 +137,22 @@ export function ConstructionPackages({ onSelectPackage }) {
             <span>Quality Construction</span>
             <span className="h-1.5 w-1.5 rounded-full bg-accent-strong" />
             <span>Transparent Pricing</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-strong" />
+            <span>Zero Hidden Escalation</span>
           </div>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Clear specifications with zero hidden escalation. Explore official stage-by-stage payment schedules in Hindi or English, or calculate custom budget.
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+            Engineered architectural specifications with clear milestone agreements. Explore official stage-wise payment schedules in Hindi or English, or request a customized layout & cost estimate for your plot.
           </p>
 
           {/* Payment Plan Highlight Pill */}
           <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent-strong text-xs font-semibold">
             <FileText className="h-3.5 w-3.5" />
-            <span>Official Milestone Payment Plan Included (10% Advance · Stage-wise · 5% Handover)</span>
+            <span>Official Milestone Payment Plan Included (10% Advance · Stage-wise Progress · 5% Handover)</span>
           </div>
         </div>
 
-        {/* 5 Package Cards */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5 items-stretch">
+        {/* 5 Package Cards - Responsive Grid */}
+        <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-stretch">
           {packages.map((pkg) => {
             const isSelected = selectedId === pkg.id;
             return (
@@ -160,47 +162,72 @@ export function ConstructionPackages({ onSelectPackage }) {
                   setSelectedId(pkg.id);
                   if (onSelectPackage) onSelectPackage(pkg);
                 }}
-                className={`relative flex flex-col rounded-sm border-2 transition-all duration-300 cursor-pointer overflow-hidden ${
+                className={`relative flex flex-col rounded-md border-2 transition-all duration-300 cursor-pointer overflow-hidden ${
                   pkg.popular
-                    ? 'border-accent shadow-xl lg:-translate-y-2'
+                    ? 'border-accent shadow-xl xl:-translate-y-2 ring-2 ring-accent/20'
                     : isSelected
                     ? 'border-primary shadow-lg'
                     : 'border-border bg-card shadow-sm hover:border-primary/50'
                 }`}
               >
                 {pkg.popular && (
-                  <div className="bg-accent text-accent-foreground text-center py-1 text-[11px] font-bold tracking-widest uppercase flex items-center justify-center gap-1">
-                    <Sparkles className="h-3 w-3" /> BEST VALUE
+                  <div className="bg-accent text-accent-foreground text-center py-1 text-[11px] font-bold tracking-widest uppercase flex items-center justify-center gap-1 shadow-sm">
+                    <Sparkles className="h-3 w-3" /> BEST VALUE &amp; POPULAR
                   </div>
                 )}
 
                 {/* Card Header */}
                 <div className={`p-5 text-center text-hero-foreground bg-gradient-to-br ${pkg.color}`}>
                   <h3 className="font-display text-xl font-bold tracking-wider">{pkg.name}</h3>
-                  <p className="text-[11px] opacity-80 mt-0.5">{pkg.tagline}</p>
+                  <p className="text-[11px] opacity-85 mt-0.5 font-medium">{pkg.tagline}</p>
                   <div className="mt-4 pt-3 border-t border-hero-foreground/20">
                     <span className="block text-[10px] uppercase font-bold tracking-wider opacity-85">
                       Starting From
                     </span>
                     <div className="flex items-baseline justify-center gap-1 mt-1">
                       <span className="font-display text-3xl font-extrabold">{pkg.rate}</span>
-                      <span className="text-xs opacity-90">{pkg.unit}</span>
+                      <span className="text-xs opacity-90 font-medium">{pkg.unit}</span>
                     </div>
                   </div>
-                  <div className="mt-2.5 inline-block text-[10px] font-medium bg-black/25 px-2 py-0.5 rounded-full border border-white/15">
+                  <div className="mt-2.5 inline-block text-[10px] font-semibold bg-black/30 px-2.5 py-0.5 rounded-full border border-white/20">
                     {pkg.planSummary}
                   </div>
                 </div>
 
                 {/* Features list */}
                 <div className="p-5 flex-1 flex flex-col justify-between bg-card text-xs">
-                  <ul className="space-y-2">
-                    {pkg.features.map((feat, i) => (
-                      <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                        <Check className="h-3.5 w-3.5 text-accent-strong shrink-0 mt-0.5" />
-                        <span className="leading-snug">{feat}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-2.5">
+                    {pkg.features.map((feat, i) => {
+                      const isFree = feat.toLowerCase().startsWith('free');
+                      if (isFree) {
+                        return (
+                          <li
+                            key={i}
+                            className="mt-3 relative overflow-hidden rounded-md border border-amber-400 bg-gradient-to-r from-amber-500/15 via-yellow-300/35 to-amber-500/15 p-2.5 shadow-sm animate-gold-shimmer"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-sm animate-bounce-subtle">
+                                <Gift className="h-3.5 w-3.5" />
+                              </span>
+                              <div className="min-w-0">
+                                <span className="block text-[10px] font-extrabold uppercase tracking-wider text-amber-800">
+                                  ★ Special Complimentary Offer
+                                </span>
+                                <span className="block font-bold text-xs text-primary leading-tight">
+                                  {feat}
+                                </span>
+                              </div>
+                            </div>
+                          </li>
+                        );
+                      }
+                      return (
+                        <li key={i} className="flex items-start gap-2 text-muted-foreground text-xs">
+                          <Check className="h-3.5 w-3.5 text-accent-strong shrink-0 mt-0.5" />
+                          <span className="leading-snug">{feat}</span>
+                        </li>
+                      );
+                    })}
                   </ul>
 
                   {/* Actions */}
@@ -209,7 +236,7 @@ export function ConstructionPackages({ onSelectPackage }) {
                     <Button
                       variant={pkg.popular ? 'gold' : 'navy'}
                       size="sm"
-                      className="w-full text-xs flex items-center justify-center gap-1.5 shadow-sm"
+                      className="w-full text-xs min-h-[38px] flex items-center justify-center gap-1.5 shadow-sm font-bold"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleOpenPlanModal(pkg.id);
@@ -222,7 +249,7 @@ export function ConstructionPackages({ onSelectPackage }) {
                     {/* Secondary Quick Action: Select for Estimate */}
                     <button
                       type="button"
-                      className="w-full text-center py-1 text-[11px] font-semibold text-accent-strong hover:text-primary transition-colors flex items-center justify-center gap-1"
+                      className="w-full text-center py-1.5 text-[11px] font-bold text-accent-strong hover:text-primary transition-colors flex items-center justify-center gap-1 min-h-[32px]"
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedId(pkg.id);

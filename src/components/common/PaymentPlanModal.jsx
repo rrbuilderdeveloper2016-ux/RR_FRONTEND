@@ -293,8 +293,8 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
               <span className="text-xs font-bold text-accent-strong">100% Total</span>
             </div>
 
-            <div className="border border-border rounded-sm overflow-hidden">
-              <table className="w-full text-left text-xs">
+            <div className="border border-border rounded-sm overflow-x-auto">
+              <table className="w-full min-w-[500px] text-left text-xs">
                 <thead className="bg-muted text-muted-foreground border-b border-border text-[11px] uppercase tracking-wider font-semibold">
                   <tr>
                     <th className="py-2.5 px-3 w-12 text-center">#</th>
