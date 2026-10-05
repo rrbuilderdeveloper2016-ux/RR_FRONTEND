@@ -38,6 +38,7 @@ export function App() {
           <Route path="/property/:id" element={<PropertyDetailPage />} />
           <Route path="/sell-property" element={<SellPropertyPage />} />
           <Route path="/build-on-my-plot" element={<BuildOnMyPlotPage />} />
+          <Route path="/build" element={<BuildOnMyPlotPage />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/locations" element={<LocationsPage />} />

@@ -222,7 +222,7 @@ export function ConstructionPackages({ onSelectPackage }) {
                         if (el) {
                           el.scrollIntoView({ behavior: 'smooth' });
                         } else {
-                          navigate('/build');
+                          navigate('/build-on-my-plot#estimate-form', { state: { selectedPackage: pkg } });
                         }
                       }}
                     >

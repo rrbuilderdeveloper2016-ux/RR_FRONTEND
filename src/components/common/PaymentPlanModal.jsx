@@ -57,15 +57,16 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
   };
 
   const handleProceed = () => {
+    const pkgPayload = {
+      id: activePkgId,
+      name: pkgData.packageName,
+      rate: `₹${rate.toLocaleString('en-IN')}`,
+      floor: selectedFloor,
+      area: builtUpArea,
+      estimatedCost: totalCost,
+    };
     if (onSelectPackage) {
-      onSelectPackage({
-        id: activePkgId,
-        name: pkgData.packageName,
-        rate: `₹${rate.toLocaleString('en-IN')}`,
-        floor: selectedFloor,
-        area: builtUpArea,
-        estimatedCost: totalCost,
-      });
+      onSelectPackage(pkgPayload);
     }
     onClose();
     setTimeout(() => {
@@ -73,7 +74,7 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       } else {
-        navigate('/build');
+        navigate('/build-on-my-plot#estimate-form', { state: { selectedPackage: pkgPayload } });
       }
     }, 150);
   };

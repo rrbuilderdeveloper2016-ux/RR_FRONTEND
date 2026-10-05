@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import { Breadcrumb, PageHero, SectionHeading } from '../components/common/Footer';
 import { LeadForm } from '../components/forms/LeadForm';
@@ -26,7 +27,20 @@ const steps = [
 ];
 
 export function BuildOnMyPlotPage() {
-  const [selectedPackage, setSelectedPackage] = useState(null);
+  const location = useLocation();
+  const [selectedPackage, setSelectedPackage] = useState(location.state?.selectedPackage || null);
+
+  useEffect(() => {
+    if (location.state?.selectedPackage) {
+      setSelectedPackage(location.state.selectedPackage);
+    }
+    if (location.state?.selectedPackage || location.hash === '#estimate-form') {
+      setTimeout(() => {
+        const el = document.getElementById('estimate-form');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    }
+  }, [location]);
 
   return (
     <>
