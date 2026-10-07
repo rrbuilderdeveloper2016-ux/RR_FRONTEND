@@ -55,26 +55,54 @@ export function AboutPage() {
       </section>
 
       {/* Brand Heritage Banner Showcase */}
-      <section className="bg-primary-deep py-12 border-y border-accent/20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div className="relative overflow-hidden rounded-md border border-accent/30 bg-primary/40 shadow-2xl">
-            <img
-              src={brandCoverImage}
-              alt="RR Builder & Developer — Building Dreams, Creating Legacies — Since 2016"
-              className="w-full h-auto object-cover max-h-[460px]"
-              loading="lazy"
-            />
-          </div>
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <div>
-              <p className="text-xs uppercase tracking-widest text-accent font-bold">Official Brand Heritage</p>
-              <h3 className="text-lg sm:text-xl font-display font-bold text-hero-foreground mt-0.5">
-                Building Dreams, Creating Legacies — Since 2016
-              </h3>
+      <section className="relative bg-gradient-to-b from-[#0B132B] via-[#0F1B3B] to-[#0B132B] py-16 text-hero-foreground border-y border-accent/25 overflow-hidden">
+        {/* Subtle Ambient Golden Glow Behind Banner */}
+        <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
+        
+        <div className="mx-auto max-w-7xl px-4 lg:px-6 relative z-10">
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent text-[11px] font-bold uppercase tracking-wider mb-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
+              Brand Heritage &amp; Vision
             </div>
-            <p className="text-xs text-hero-muted max-w-md sm:text-right">
-              Serving Indore with engineering precision, registered legal security, and benchmark residential &amp; commercial construction.
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-hero-foreground">
+              Building Dreams, Creating Legacies
+            </h2>
+            <p className="text-xs sm:text-sm text-hero-muted mt-2 max-w-xl mx-auto leading-relaxed">
+              Over a decade of trusted residential, commercial, and plotted development expertise rooted in Indore since 2016.
             </p>
+          </div>
+
+          {/* Cinematic Frame */}
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-xl bg-primary-deep/90 shadow-2xl border border-accent/30 ring-1 ring-white/10 group">
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] max-h-[480px] w-full overflow-hidden">
+              <img
+                src={brandCoverImage}
+                alt="RR Builder & Developer — Building Dreams, Creating Legacies — Since 2016"
+                className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+              {/* Soft Edge Blends - Top & Bottom Vignettes */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0B132B]/80 via-[#0B132B]/20 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0B132B] via-[#0B132B]/40 to-transparent" />
+              {/* Soft Edge Blends - Left & Right Vignettes */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0B132B]/70 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0B132B]/70 to-transparent" />
+            </div>
+
+            {/* Bottom Accent Bar */}
+            <div className="border-t border-accent/20 bg-primary-deep/95 px-6 py-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+              <div className="flex items-center gap-2.5">
+                <span className="h-2 w-2 rounded-full bg-accent" />
+                <span className="text-xs font-semibold tracking-wide text-hero-foreground">
+                  Official Trademark Signature · RR Builder &amp; Developer
+                </span>
+              </div>
+              <span className="text-xs text-accent font-bold tracking-wider uppercase">
+                Since 2016 · Indore (M.P.)
+              </span>
+            </div>
           </div>
         </div>
       </section>
