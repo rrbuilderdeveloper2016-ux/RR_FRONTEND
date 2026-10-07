@@ -17,6 +17,7 @@ import {
 import {
   heroImage,
   indoreImage,
+  brandCoverImage,
   testimonials,
   initialProjects,
 } from '../data/initialData';
