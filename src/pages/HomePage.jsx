@@ -219,6 +219,20 @@ export function HomePage() {
       {/* CLIENT SPECIFIC: 10 SPECIALITIES */}
       <OurSpeciality />
 
+      {/* Brand Heritage Showcase Banner */}
+      <section className="bg-primary-deep py-10 border-t border-accent/20">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <div className="relative overflow-hidden rounded-md border border-accent/30 shadow-2xl">
+            <img
+              src={brandCoverImage}
+              alt="RR BUILDER & DEVELOPER — Building Dreams, Creating Legacies — Since 2016"
+              className="w-full h-auto object-cover max-h-[440px]"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Featured Projects Section */}
       <section className="bg-primary py-16 text-hero-foreground">
         <div className="mx-auto grid max-w-7xl gap-9 px-4 lg:grid-cols-[.75fr_2fr] lg:px-6">

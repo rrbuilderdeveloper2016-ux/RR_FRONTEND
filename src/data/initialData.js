@@ -2,8 +2,9 @@ import heroImage from '@/assets/rr-hero.jpg';
 import servicesImage from '@/assets/rr-services-grid.jpg';
 import projectsImage from '@/assets/rr-projects-triptych.jpg';
 import indoreImage from '@/assets/rr-indore.jpg';
+import brandCoverImage from '@/assets/rr-brand-cover.jpg';
 
-export { heroImage, servicesImage, projectsImage, indoreImage };
+export { heroImage, servicesImage, projectsImage, indoreImage, brandCoverImage };
 
 export const initialProperties = [
   {

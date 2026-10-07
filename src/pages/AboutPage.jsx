@@ -1,5 +1,5 @@
 import React from 'react';
-import { indoreImage } from '../data/initialData';
+import { indoreImage, brandCoverImage } from '../data/initialData';
 import { Breadcrumb, PageHero, SectionHeading } from '../components/common/Footer';
 
 export function AboutPage() {
@@ -50,6 +50,31 @@ export function AboutPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brand Heritage Banner Showcase */}
+      <section className="bg-primary-deep py-12 border-y border-accent/20">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <div className="relative overflow-hidden rounded-md border border-accent/30 bg-primary/40 shadow-2xl">
+            <img
+              src={brandCoverImage}
+              alt="RR Builder & Developer — Building Dreams, Creating Legacies — Since 2016"
+              className="w-full h-auto object-cover max-h-[460px]"
+              loading="lazy"
+            />
+          </div>
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-accent font-bold">Official Brand Heritage</p>
+              <h3 className="text-lg sm:text-xl font-display font-bold text-hero-foreground mt-0.5">
+                Building Dreams, Creating Legacies — Since 2016
+              </h3>
+            </div>
+            <p className="text-xs text-hero-muted max-w-md sm:text-right">
+              Serving Indore with engineering precision, registered legal security, and benchmark residential &amp; commercial construction.
+            </p>
           </div>
         </div>
       </section>

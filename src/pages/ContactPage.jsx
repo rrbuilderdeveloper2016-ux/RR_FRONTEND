@@ -49,6 +49,17 @@ export function ContactPage() {
                 <span className="font-semibold text-primary group-hover:text-accent-strong">Facebook: RR Builder &amp; Developer</span>
               </a>
 
+              <a href="https://www.instagram.com/rrbuilderdeveloper?stkn=MW5rN2xlbnI0Z3dlNQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-foreground hover:text-accent-strong transition group">
+                <span className="h-5 w-5 rounded bg-[#E4405F]/15 text-[#E4405F] flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </span>
+                <span className="font-semibold text-primary group-hover:text-accent-strong">Instagram: @rrbuilderdeveloper</span>
+              </a>
+
               <p className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="h-5 w-5 text-accent-strong shrink-0" />
                 <span>B-203, Vasundhara complex, opp. Phoenix mall, Indore (M.P.)</span>
