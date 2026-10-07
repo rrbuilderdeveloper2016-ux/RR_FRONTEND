@@ -32,8 +32,11 @@ import {
   KeyRound,
   User,
   LogOut,
-  ShieldCheck
+  ShieldCheck,
+  FileText
 } from 'lucide-react';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { inquiryService } from '../services/inquiryService';
 import { Button } from '../components/ui/Button';
 
@@ -249,6 +252,112 @@ export function AdminPage() {
     } catch (err) {
       alert('Failed to delete: ' + err.message);
     }
+  };
+
+  // Export to PDF
+  const handleExportPDF = () => {
+    if (!inquiries.length) {
+      alert('No enquiries to export.');
+      return;
+    }
+
+    const doc = new jsPDF({
+      orientation: 'landscape',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    // Header Banner
+    doc.setFillColor(11, 19, 43); // Navy #0B132B
+    doc.rect(0, 0, 297, 24, 'F');
+
+    // Title
+    doc.setTextColor(200, 155, 60); // Gold #C89B3C
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.text('RR BUILDER & DEVELOPER', 14, 11);
+
+    // Subtitle & Office
+    doc.setTextColor(220, 225, 235);
+    doc.setFontSize(8.5);
+    doc.setFont('helvetica', 'normal');
+    doc.text('B-203, Vasundhara Complex, opp. Phoenix Mall, Indore (M.P.) | Phone: +91 6232570809', 14, 18);
+
+    // Right-aligned report details
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('CLIENT ENQUIRIES REPORT', 283, 10, { align: 'right' });
+
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(200, 155, 60);
+    const dateStr = new Date().toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    });
+    doc.text('Generated: ' + dateStr + ' | Total Records: ' + inquiries.length, 283, 18, { align: 'right' });
+
+    // Table Data
+    const headers = [
+      ['#', 'Date', 'Client Name', 'Phone', 'Service / Interest', 'Details / Budget', 'Status', 'Notes / Message']
+    ];
+
+    const rows = inquiries.map((item, idx) => [
+      idx + 1,
+      item.createdAt ? new Date(item.createdAt).toLocaleDateString('en-IN') : '-',
+      item.name || '-',
+      item.phone || '-',
+      item.inquiryType || item.serviceInterest || 'General',
+      item.budget || item.demandAskingPrice || item.selectedPropertyTypes || '-',
+      item.status || 'NEW',
+      (item.adminNotes ? '[Note: ' + item.adminNotes + '] ' : '') + (item.message || '-')
+    ]);
+
+    autoTable(doc, {
+      head: headers,
+      body: rows,
+      startY: 28,
+      theme: 'grid',
+      styles: {
+        fontSize: 8,
+        cellPadding: 2.5,
+        valign: 'middle',
+        overflow: 'linebreak'
+      },
+      headStyles: {
+        fillColor: [28, 37, 65], // #1C2541
+        textColor: [255, 255, 255],
+        fontStyle: 'bold',
+        fontSize: 8.5
+      },
+      columnStyles: {
+        0: { cellWidth: 10, halign: 'center' },
+        1: { cellWidth: 22 },
+        2: { cellWidth: 35, fontStyle: 'bold' },
+        3: { cellWidth: 28 },
+        4: { cellWidth: 38 },
+        5: { cellWidth: 35 },
+        6: { cellWidth: 22, halign: 'center' },
+        7: { cellWidth: 'auto' }
+      },
+      alternateRowStyles: {
+        fillColor: [248, 250, 252]
+      },
+      didDrawPage: (data) => {
+        const pageCount = doc.internal.getNumberOfPages();
+        doc.setFontSize(7.5);
+        doc.setTextColor(130, 140, 155);
+        doc.text(
+          'Page ' + data.pageNumber + ' of ' + pageCount + ' · RR Builder & Developer Confidential CRM Report · Strictly for Internal Office Use',
+          14,
+          204
+        );
+      }
+    });
+
+    const fileName = 'RR_Builder_Enquiries_' + new Date().toISOString().slice(0, 10) + '.pdf';
+    doc.save(fileName);
   };
 
   // Export to CSV
@@ -484,15 +593,26 @@ export function AdminPage() {
               <span className="hidden sm:inline ml-1">Refresh</span>
             </Button>
 
-            {/* Export CSV */}
+            {/* Export PDF */}
             <Button
               variant="gold"
               size="sm"
+              onClick={handleExportPDF}
+              title="Download Official Formatted PDF Report"
+            >
+              <FileText className="h-4 w-4" />
+              <span className="hidden sm:inline ml-1">Export PDF</span>
+            </Button>
+
+            {/* Export CSV */}
+            <Button
+              variant="outline"
+              size="sm"
               onClick={handleExportCSV}
-              title="Download Excel / CSV format"
+              title="Download Excel / CSV spreadsheet format"
             >
               <Download className="h-4 w-4" />
-              <span className="hidden sm:inline ml-1">Export CSV</span>
+              <span className="hidden sm:inline ml-1">CSV</span>
             </Button>
 
             {/* Current User Badge */}
