@@ -44,6 +44,7 @@ export function FloatingWhatsApp() {
   }
 
   const openWhatsAppUrl = (customMsg) => {
+    trackContact('WhatsApp');
     const text = encodeURIComponent(customMsg || DEFAULT_MESSAGE);
     const url = `https://wa.me/916232570809?text=${text}`;
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -144,7 +145,9 @@ export function FloatingWhatsApp() {
         <button
           type="button"
           onClick={() => {
-            // If already open, close it; otherwise open the options card or open WA directly
+            if (!isOpen) {
+              trackContact('WhatsApp');
+            }
             setIsOpen(!isOpen);
           }}
           className="relative group h-14 w-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none"

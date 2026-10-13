@@ -2,6 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin, Clock3 } from 'lucide-react';
 import { Breadcrumb, PageHero, SectionHeading } from '../components/common/Footer';
 import { ContactForm } from '../components/forms/ContactForm';
+import { trackContact } from '../utils/metaPixel';
 
 export function ContactPage() {
   return (
@@ -23,12 +24,12 @@ export function ContactPage() {
             />
 
             <div className="mt-8 space-y-5 text-sm">
-              <a href="tel:+916232570809" className="flex items-center gap-3 text-foreground hover:text-accent-strong transition">
+              <a href="tel:+916232570809" onClick={() => trackContact('Phone Call')} className="flex items-center gap-3 text-foreground hover:text-accent-strong transition">
                 <Phone className="h-5 w-5 text-accent-strong shrink-0" />
                 <span className="font-semibold">+91 6232570809</span>
               </a>
 
-              <a href="https://wa.me/916232570809" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-foreground hover:text-accent-strong transition">
+              <a href="https://wa.me/916232570809" target="_blank" rel="noreferrer" onClick={() => trackContact('WhatsApp')} className="flex items-center gap-3 text-foreground hover:text-accent-strong transition">
                 <span className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center shrink-0">
                   <span className="h-2.5 w-2.5 rounded-full bg-success" />
                 </span>

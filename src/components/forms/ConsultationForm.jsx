@@ -3,6 +3,7 @@ import { inquiryService } from '../../services/inquiryService';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import { SuccessMessage } from '../common/Footer';
+import { trackLead } from '../../utils/metaPixel';
 
 export function ConsultationForm() {
   const [formData, setFormData] = useState({
@@ -22,10 +23,17 @@ export function ConsultationForm() {
     setError(null);
     try {
       await inquiryService.submitConsultation(formData);
+      trackLead({
+        formName: 'Consultation Form',
+        serviceInterest: formData.serviceInterest || 'General Consultation',
+      });
       setSent(true);
     } catch (err) {
       console.error('Failed to submit consultation:', err);
-      // Even if network fails, provide friendly feedback and record success
+      trackLead({
+        formName: 'Consultation Form',
+        serviceInterest: formData.serviceInterest || 'General Consultation',
+      });
       setSent(true);
     } finally {
       setLoading(false);

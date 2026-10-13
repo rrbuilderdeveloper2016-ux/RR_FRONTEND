@@ -5,6 +5,7 @@ import { Textarea } from '../ui/Textarea';
 import { Button } from '../ui/Button';
 import { SuccessMessage } from '../common/Footer';
 import { Check, Sparkles } from 'lucide-react';
+import { trackLead } from '../../utils/metaPixel';
 
 export function LeadForm({ selling = false, selectedPackage = null }) {
   const [formData, setFormData] = useState({
@@ -42,9 +43,19 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
       } else {
         await inquiryService.submitBuildOnPlot(formData);
       }
+      trackLead({
+        formName: selling ? 'Sell Property Listing Form' : 'Build On My Plot Consultation Form',
+        serviceInterest: selling ? 'Sell Property' : (selectedPackage?.name ? ('Construction Package - ' + selectedPackage.name) : 'Build On Plot'),
+        budget: formData.budget || formData.expectedPrice,
+      });
       setSent(true);
     } catch (err) {
       console.error(err);
+      trackLead({
+        formName: selling ? 'Sell Property Listing Form' : 'Build On My Plot Consultation Form',
+        serviceInterest: selling ? 'Sell Property' : (selectedPackage?.name ? ('Construction Package - ' + selectedPackage.name) : 'Build On Plot'),
+        budget: formData.budget || formData.expectedPrice,
+      });
       setSent(true);
     } finally {
       setLoading(false);

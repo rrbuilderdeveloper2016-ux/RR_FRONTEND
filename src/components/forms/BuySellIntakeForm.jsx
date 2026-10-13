@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Home, Clock, Mail, CheckCircle2, Send, Tag } from 'lucide-react';
 import { inquiryService } from '../../services/inquiryService';
 import { Button } from '../ui/Button';
+import { trackLead } from '../../utils/metaPixel';
 
 const propertyOptions = ['Plot', 'Land', 'Flat', 'House / Bungalow', 'Commercial'];
 const timelineOptions = ['Urgent', '1 – 3 Months', '3 – 6 Months', 'More than 6 Months / Flexible'];
@@ -53,9 +54,19 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
       } else {
         await inquiryService.submitGeneral({ ...payload, inquiryType: 'SELL_PROPERTY' });
       }
+      trackLead({
+        formName: activeTab === 'buy' ? 'Buy Property Intake Form' : 'Sell Property Intake Form',
+        serviceInterest: payload.serviceInterest,
+        budget: formData.budgetOrDemand,
+      });
       setSubmitted(true);
     } catch (err) {
       console.error(err);
+      trackLead({
+        formName: activeTab === 'buy' ? 'Buy Property Intake Form' : 'Sell Property Intake Form',
+        serviceInterest: payload.serviceInterest,
+        budget: formData.budgetOrDemand,
+      });
       setSubmitted(true);
     } finally {
       setLoading(false);

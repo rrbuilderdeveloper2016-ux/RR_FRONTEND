@@ -27,6 +27,7 @@ import { ServiceCard } from '../components/cards/ServiceCard';
 import { ProjectCard } from '../components/cards/ProjectCard';
 import { TestimonialCard } from '../components/cards/TestimonialCard';
 import { ConsultationForm } from '../components/forms/ConsultationForm';
+import { trackContact } from '../utils/metaPixel';
 import { BuySellIntakeForm } from '../components/forms/BuySellIntakeForm';
 import { ConstructionPackages } from '../components/common/ConstructionPackages';
 import { OurSpeciality } from '../components/common/OurSpeciality';
@@ -138,7 +139,7 @@ export function HomePage() {
                   Construction Packages <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
               </Link>
-              <a href="tel:+916232570809">
+              <a href="tel:+916232570809" onClick={() => trackContact('Phone Call')}>
                 <Button variant="heroOutline" size="lg">
                   <Phone className="h-4 w-4 mr-1.5 text-accent" />
                   Call: +91 6232570809
@@ -320,7 +321,7 @@ export function HomePage() {
             <Link to="/build-on-my-plot">
               <Button variant="gold" size="lg">Explore Construction Packages</Button>
             </Link>
-            <a href="tel:+916232570809">
+            <a href="tel:+916232570809" onClick={() => trackContact('Phone Call')}>
               <Button variant="heroOutline" size="lg">Call: +91 6232570809</Button>
             </a>
           </div>

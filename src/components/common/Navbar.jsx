@@ -65,6 +65,7 @@ export function Navbar() {
         <div className="hidden items-center gap-4 xl:flex">
           <a
             href="tel:+916232570809"
+            onClick={() => trackContact('Phone Call')}
             className="flex items-center gap-2 text-xs font-semibold text-primary transition hover:text-accent-strong"
           >
             <Phone className="h-4 w-4 text-accent-strong" />
@@ -74,6 +75,7 @@ export function Navbar() {
             href="https://wa.me/916232570809?text=Hello%20RR%20Builders%20Indore!%20I%20visited%20your%20website%20and%20want%20to%20inquire%20about%20Construction%20Packages%20%2F%20Property%20in%20Indore.%20Please%20guide%20me."
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackContact('WhatsApp')}
             className="inline-flex items-center gap-2 rounded-sm border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition hover:bg-muted"
           >
             <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
@@ -124,6 +126,7 @@ export function Navbar() {
             <div className="mt-4 flex flex-col gap-3 pt-2">
               <a
                 href="tel:+916232570809"
+                onClick={() => trackContact('Phone Call')}
                 className="flex items-center gap-2 text-sm font-semibold text-primary"
               >
                 <Phone className="h-4 w-4 text-accent-strong" />
@@ -133,6 +136,7 @@ export function Navbar() {
                 href="https://wa.me/916232570809?text=Hello%20RR%20Builders%20Indore!%20I%20visited%20your%20website%20and%20want%20to%20inquire%20about%20Construction%20Packages%20%2F%20Property%20in%20Indore.%20Please%20guide%20me."
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackContact('WhatsApp')}
                 className="inline-flex items-center justify-center gap-2 rounded-sm border border-border bg-muted py-2 text-sm font-semibold"
               >
                 <span className="h-2 w-2 rounded-full bg-success" />

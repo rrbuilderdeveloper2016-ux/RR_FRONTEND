@@ -4,6 +4,7 @@ import { Input } from '../ui/Input';
 import { Textarea } from '../ui/Textarea';
 import { Button } from '../ui/Button';
 import { SuccessMessage } from '../common/Footer';
+import { trackLead } from '../../utils/metaPixel';
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -21,9 +22,17 @@ export function ContactForm() {
     setLoading(true);
     try {
       await inquiryService.submitContact(formData);
+      trackLead({
+        formName: 'Contact Form',
+        serviceInterest: formData.subject || 'General Inquiry',
+      });
       setSent(true);
     } catch (err) {
       console.error(err);
+      trackLead({
+        formName: 'Contact Form',
+        serviceInterest: formData.subject || 'General Inquiry',
+      });
       setSent(true);
     } finally {
       setLoading(false);

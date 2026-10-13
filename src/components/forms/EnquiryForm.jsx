@@ -5,6 +5,7 @@ import { Input } from '../ui/Input';
 import { Textarea } from '../ui/Textarea';
 import { Button } from '../ui/Button';
 import { SuccessMessage } from '../common/Footer';
+import { trackLead, trackContact } from '../../utils/metaPixel';
 
 export function EnquiryForm({ title = 'Interested in this property?', referenceId = '', referenceTitle = '', isProject = false }) {
   const [formData, setFormData] = useState({
@@ -27,9 +28,19 @@ export function EnquiryForm({ title = 'Interested in this property?', referenceI
       } else {
         await inquiryService.submitPropertyEnquiry(formData);
       }
+      trackLead({
+        formName: isProject ? 'Project Enquiry Form' : 'Property Enquiry Form',
+        referenceTitle: formData.referenceTitle,
+        serviceInterest: isProject ? 'Project Inquiry / Site Visit' : 'Property Inquiry / Site Visit',
+      });
       setSent(true);
     } catch (err) {
       console.error(err);
+      trackLead({
+        formName: isProject ? 'Project Enquiry Form' : 'Property Enquiry Form',
+        referenceTitle: formData.referenceTitle,
+        serviceInterest: isProject ? 'Project Inquiry / Site Visit' : 'Property Inquiry / Site Visit',
+      });
       setSent(true);
     } finally {
       setLoading(false);
@@ -95,15 +106,17 @@ export function EnquiryForm({ title = 'Interested in this property?', referenceI
 
       <div className="grid grid-cols-2 gap-2 pt-2">
         <a
-          href="tel:+919876543210"
+          href="tel:+916232570809"
+          onClick={() => trackContact('Phone Call')}
           className="inline-flex items-center justify-center gap-1.5 rounded-sm border border-border bg-background py-2 text-xs font-semibold hover:bg-muted text-foreground transition"
         >
           <Phone className="h-3.5 w-3.5 text-accent-strong" /> Call Now
         </a>
         <a
-          href="https://wa.me/919876543210"
+          href="https://wa.me/916232570809"
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackContact('WhatsApp')}
           className="inline-flex items-center justify-center gap-1.5 rounded-sm border border-border bg-background py-2 text-xs font-semibold hover:bg-muted text-foreground transition"
         >
           <span className="h-2 w-2 rounded-full bg-success" /> WhatsApp

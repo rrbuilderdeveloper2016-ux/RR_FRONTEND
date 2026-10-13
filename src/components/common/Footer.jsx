@@ -1,6 +1,7 @@
 import { FloatingWhatsApp } from './FloatingWhatsApp';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { trackContact } from '../../utils/metaPixel';
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { Brand, navItems, Navbar } from './Navbar';
 import { Button } from '../ui/Button';
@@ -82,7 +83,7 @@ export function Footer() {
           <h3 className="footer-title">Contact Us</h3>
           <ul className="footer-list">
             <li>
-              <a className="flex items-center gap-2" href="tel:+916232570809">
+              <a className="flex items-center gap-2" href="tel:+916232570809" onClick={() => trackContact('Phone Call')}>
                 <Phone className="h-4 w-4 text-accent" />
                 +91 6232570809
               </a>

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { trackPageView } from './utils/metaPixel';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { PageLayout } from './components/common/Footer';
 import { HomePage } from './pages/HomePage';
@@ -17,18 +18,26 @@ import { AdminPage } from './pages/AdminPage';
 import { AdminLoginPage } from './pages/AdminLoginPage';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 
-function ScrollToTop() {
+function RouteTracker() {
   const { pathname } = useLocation();
+  const isFirstMount = useRef(true);
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
+    trackPageView();
   }, [pathname]);
+
   return null;
 }
 
 export function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
+      <RouteTracker />
       <PageLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />

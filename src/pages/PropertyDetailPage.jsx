@@ -20,6 +20,7 @@ import { propertyService } from '../services/propertyService';
 import { Breadcrumb } from '../components/common/Footer';
 import { EnquiryForm } from '../components/forms/EnquiryForm';
 import { Button } from '../components/ui/Button';
+import { trackViewContent } from '../utils/metaPixel';
 
 export function PropertyDetailPage() {
   const { id } = useParams();
@@ -32,6 +33,9 @@ export function PropertyDetailPage() {
       .then((data) => {
         setProperty(data);
         setLoading(false);
+        if (data) {
+          trackViewContent(data);
+        }
       })
       .catch((err) => {
         console.error(err);

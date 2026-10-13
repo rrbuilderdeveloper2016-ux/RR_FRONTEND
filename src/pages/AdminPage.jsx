@@ -114,7 +114,7 @@ export function AdminPage() {
 
   const handleLogout = () => {
     authService.logout();
-    navigate('/admin/login');
+    navigate('/admin/login', { replace: true });
   };
 
   const handleChangePasswordSubmit = async (e) => {

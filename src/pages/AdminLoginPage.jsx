@@ -13,6 +13,17 @@ export function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // If already authenticated, redirect straight to /admin
+  React.useEffect(() => {
+    if (authService.isAuthenticated()) {
+      navigate('/admin', { replace: true });
+    }
+  }, [navigate]);
+
+  if (authService.isAuthenticated()) {
+    return null;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -20,7 +31,7 @@ export function AdminLoginPage() {
 
     try {
       await authService.login(username, password);
-      navigate('/admin');
+      navigate('/admin', { replace: true });
     } catch (err) {
       setError(err.message || 'Invalid username or password. Please try again.');
     } finally {
@@ -46,10 +57,7 @@ export function AdminLoginPage() {
           <p className="text-xs text-muted-foreground">
             RR Builder &amp; Developer, Indore • Secure CRM Desk
           </p>
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-[11px] font-bold text-emerald-700">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
-            256-Bit Encrypted Session
-          </div>
+
         </div>
 
         {/* Error Alert */}
@@ -116,17 +124,7 @@ export function AdminLoginPage() {
           </Button>
         </form>
 
-        {/* Default credentials card for client demonstration */}
-        <div className="rounded-sm border border-border/80 bg-muted/40 p-3.5 text-[11px] text-muted-foreground space-y-1">
-          <p className="font-bold text-primary">Master Admin Credentials:</p>
-          <div className="flex justify-between font-mono text-[11px]">
-            <span>Username: <strong className="text-foreground">admin</strong></span>
-            <span>Password: <strong className="text-foreground">RR@Indore2026</strong></span>
-          </div>
-          <p className="text-[10px] text-muted-foreground pt-1">
-            * Password can be changed anytime from the dashboard settings.
-          </p>
-        </div>
+
 
         <div className="border-t border-border pt-4 text-center">
           <Link to="/" className="text-xs text-primary font-semibold hover:underline">

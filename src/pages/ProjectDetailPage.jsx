@@ -6,6 +6,7 @@ import { projectService } from '../services/projectService';
 import { Breadcrumb, SectionHeading } from '../components/common/Footer';
 import { EnquiryForm } from '../components/forms/EnquiryForm';
 import { Button } from '../components/ui/Button';
+import { trackViewContent } from '../utils/metaPixel';
 
 export function ProjectDetailPage() {
   const { id } = useParams();
@@ -18,6 +19,9 @@ export function ProjectDetailPage() {
       .then((data) => {
         setProject(data);
         setLoading(false);
+        if (data) {
+          trackViewContent(data);
+        }
       })
       .catch((err) => {
         console.error(err);
