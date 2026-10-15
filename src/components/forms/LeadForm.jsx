@@ -28,8 +28,7 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
       setFormData((prev) => ({
         ...prev,
         plotSize: selectedPackage.area ? `${selectedPackage.area} sq.ft` : prev.plotSize,
-        budget: selectedPackage.estimatedCost ? `₹${Number(selectedPackage.estimatedCost).toLocaleString('en-IN')}` : prev.budget,
-        message: `Inquiring for ${selectedPackage.name} Package (${selectedPackage.rate || ''}${selectedPackage.floor ? `, ${selectedPackage.floor}` : ''}${selectedPackage.area ? `, ${selectedPackage.area} sq.ft` : ''}). Please share detailed architectural layout & milestone contract.`,
+        message: `Inquiring for ${selectedPackage.name} Package (${selectedPackage.rate || ''}${selectedPackage.floor ? `, ${selectedPackage.floor}` : ''}). Please share detailed architectural layout & schedule an office discussion.`,
       }));
     }
   }, [selectedPackage, selling]);
@@ -66,7 +65,7 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
     return (
       <div className="rounded-sm border border-border bg-card p-6 shadow-card">
         <SuccessMessage>
-          Thank you. Our dedicated {selling ? 'property valuation' : 'civil construction'} specialist in Indore will contact you shortly.
+          Thank you. Our dedicated {selling ? 'property valuation' : 'civil construction'} specialist in Indore will contact you shortly to schedule an office discussion.
         </SuccessMessage>
       </div>
     );
@@ -79,7 +78,7 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
     >
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-display text-2xl font-bold text-primary">
-          {selling ? 'List Your Property for Sale' : 'Request Construction Estimate'}
+          {selling ? 'List Your Property for Sale' : 'Book Office Consultation / Estimate'}
         </h3>
       </div>
 
@@ -94,12 +93,11 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
               <span className="font-bold text-primary">{selectedPackage.name} PACKAGE</span>
               <span className="text-muted-foreground ml-2">
                 {selectedPackage.rate} {selectedPackage.floor ? `· ${selectedPackage.floor}` : ''}
-                {selectedPackage.estimatedCost ? ` · Est: ₹${Number(selectedPackage.estimatedCost).toLocaleString('en-IN')}` : ''}
               </span>
             </div>
           </div>
           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-accent-strong bg-accent/20 px-2 py-0.5 rounded-full">
-            <Check className="h-3 w-3" /> Pre-filled
+            <Check className="h-3 w-3" /> Selected
           </span>
         </div>
       )}
@@ -179,7 +177,7 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
 
       {!selling && (
         <Input
-          placeholder="Approx. Budget (e.g. ₹25 Lakh)"
+          placeholder="Target Budget / Tentative Range (Optional)"
           value={formData.budget}
           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
         />
@@ -189,7 +187,7 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
         placeholder={
           selling
             ? 'Any additional property details (built-up area, age, amenities)...'
-            : 'Any specific architectural preferences, budget, or timelines...'
+            : 'Any specific architectural preferences, requirements, or meeting schedule...'
         }
         value={formData.message}
         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -202,7 +200,7 @@ export function LeadForm({ selling = false, selectedPackage = null }) {
         className="w-full"
         disabled={loading}
       >
-        {loading ? 'Submitting...' : selling ? 'Submit Property Listing' : 'Request for a Cost Estimate'}
+        {loading ? 'Submitting...' : selling ? 'Submit Property Listing' : 'Request Consultation & Estimate'}
       </Button>
     </form>
   );

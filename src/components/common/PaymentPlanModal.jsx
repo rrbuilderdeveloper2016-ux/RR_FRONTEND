@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   X,
   FileText,
-  Calculator,
   Languages,
   CheckCircle2,
   ShieldCheck,
@@ -19,7 +18,6 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
   const navigate = useNavigate();
   const [lang, setLang] = useState('en'); // 'en' | 'hi'
   const [activePkgId, setActivePkgId] = useState(packageId || 'gold');
-  const [builtUpArea, setBuiltUpArea] = useState(1500);
 
   // Sync activePkgId when modal opens with a new package
   React.useEffect(() => {
@@ -42,15 +40,6 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
 
   const currentPlan = pkgData.plans[selectedFloor] || pkgData.plans[pkgData.defaultFloor] || [];
   const rate = pkgData.ratePerSqFt;
-  const totalCost = (Number(builtUpArea) || 0) * rate;
-
-  const formatCurrency = (val) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(val);
-  };
 
   const handlePrint = () => {
     window.print();
@@ -60,10 +49,8 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
     const pkgPayload = {
       id: activePkgId,
       name: pkgData.packageName,
-      rate: `₹${rate.toLocaleString('en-IN')}`,
+      rate: `₹${rate.toLocaleString('en-IN')}/sq.ft.`,
       floor: selectedFloor,
-      area: builtUpArea,
-      estimatedCost: totalCost,
     };
     if (onSelectPackage) {
       onSelectPackage(pkgPayload);
@@ -95,7 +82,7 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
               <div className="flex items-center gap-2">
                 <span className="eyebrow text-[10px]">OFFICIAL MILESTONE SCHEDULE</span>
                 <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-accent/20 text-accent-strong border border-accent/30">
-                  {lang === 'hi' ? 'भुगतान शर्तें' : 'PAYMENT TERMS'}
+                  {lang === 'hi' ? 'पारदर्शी भुगतान' : 'TRANSPARENT TERMS'}
                 </span>
               </div>
               <h2 className="font-display text-lg sm:text-xl font-bold text-primary">
@@ -120,18 +107,19 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
             <button
               type="button"
               onClick={handlePrint}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-sm border border-border text-xs font-semibold bg-background hover:bg-muted transition-colors text-muted-foreground"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-sm border border-border text-xs font-semibold bg-background hover:bg-muted transition-colors text-foreground"
               title="Print Schedule"
             >
-              <Printer className="h-3.5 w-3.5" />
-              <span>{lang === 'hi' ? 'प्रिंट' : 'Print'}</span>
+              <Printer className="h-3.5 w-3.5 text-muted-foreground" />
+              <span>Print</span>
             </button>
 
-            {/* Close Button */}
+            {/* Close modal */}
             <button
               type="button"
               onClick={onClose}
               className="p-1.5 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              aria-label="Close modal"
             >
               <X className="h-5 w-5" />
             </button>
@@ -139,48 +127,40 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-5">
           {/* Package Selector Tabs */}
-          <div>
-            <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground block mb-2">
-              {lang === 'hi' ? 'पैकेज चुनें' : 'SELECT PACKAGE'}
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-              {Object.keys(paymentPlansData).map((pkgKey) => {
-                const item = paymentPlansData[pkgKey];
-                const isActive = activePkgId === pkgKey;
-                return (
-                  <button
-                    key={pkgKey}
-                    type="button"
-                    onClick={() => setActivePkgId(pkgKey)}
-                    className={`p-2.5 rounded-sm border text-left transition-all ${
-                      isActive
-                        ? 'border-accent bg-accent/10 shadow-sm'
-                        : 'border-border bg-background hover:border-primary/40'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-primary font-display">{item.packageName}</span>
-                      {pkgKey === 'gold' && <Sparkles className="h-3 w-3 text-accent-strong" />}
-                    </div>
-                    <span className="block text-[11px] font-extrabold text-foreground mt-0.5">
-                      ₹{item.ratePerSqFt}
-                      <span className="text-[10px] text-muted-foreground font-normal">/sq.ft</span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+          <div className="flex flex-wrap items-center gap-2 pb-3 border-b border-border">
+            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider mr-1">
+              {lang === 'hi' ? 'पैकेज चुनें:' : 'Select Package:'}
+            </span>
+            {Object.keys(paymentPlansData).map((pkgKey) => {
+              const p = paymentPlansData[pkgKey];
+              const isActive = activePkgId === pkgKey;
+              return (
+                <button
+                  key={pkgKey}
+                  type="button"
+                  onClick={() => setActivePkgId(pkgKey)}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-sm border transition-all ${
+                    isActive
+                      ? 'bg-primary text-primary-foreground border-primary shadow-sm ring-1 ring-primary/30'
+                      : 'bg-background text-foreground border-border hover:border-primary/40'
+                  }`}
+                >
+                  <span>{p.packageName}</span>
+                  <span className="ml-1.5 opacity-75 font-normal">₹{p.ratePerSqFt}/sq.ft.</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Active Package Summary Banner */}
-          <div className="rounded-sm border border-border bg-muted/40 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          {/* Active Package Banner & Floor Selector */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-sm bg-muted border border-border">
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-display text-xl font-bold text-primary">{pkgData.packageName} PACKAGE</span>
                 <span className="text-xs font-semibold px-2 py-0.5 rounded bg-primary text-primary-foreground">
-                  ₹{rate}/sq.ft.
+                  Starting from ₹{rate.toLocaleString('en-IN')}/sq.ft.
                 </span>
               </div>
               <p className="text-xs text-muted-foreground mt-1">
@@ -212,71 +192,56 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
             </div>
           </div>
 
-          {/* Live Area & Cost Calculator Box */}
-          <div className="rounded-sm border border-accent/40 bg-gradient-to-r from-accent/5 via-background to-accent/10 p-4 sm:p-5">
+          {/* Transparent Milestone Framework Box */}
+          <div className="rounded-sm border border-accent/40 bg-gradient-to-r from-accent/10 via-background to-accent/5 p-4 sm:p-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-start gap-3">
-                <span className="p-2 rounded bg-accent/20 text-accent-strong shrink-0 mt-0.5">
-                  <Calculator className="h-5 w-5" />
+                <span className="p-2.5 rounded bg-accent/20 text-accent-strong shrink-0 mt-0.5">
+                  <ShieldCheck className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="text-sm font-bold text-primary">
-                    {lang === 'hi' ? 'लाइव कंस्ट्रक्शन बजट कैलकुलेटर' : 'Live Milestone Budget Calculator'}
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] uppercase font-extrabold tracking-wider px-2 py-0.5 rounded bg-accent/20 text-accent-strong">
+                      {lang === 'hi' ? '100% पारदर्शी भुगतान' : '100% Transparent Milestones'}
+                    </span>
+                    <span className="text-xs font-semibold text-muted-foreground">
+                      {lang === 'hi' ? 'स्टेज-वाइज भुगतान संरचना' : 'Stage-Wise Work Breakdown'}
+                    </span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-primary mt-1">
                     {lang === 'hi'
-                      ? 'अपना प्लॉट साइज डालें और हर माइलस्टोन का सटीक भुगतान देखें।'
-                      : 'Enter your built-up area to see exact milestone installment amounts.'}
+                      ? 'काम पूरा होने पर ही हर चरण की किस्त का भुगतान'
+                      : 'Pay Strictly as Each Construction Milestone is Completed'}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    {lang === 'hi'
+                      ? 'बिना किसी एडवांस जोखिम के — साइट पर सिविल इंजीनियर द्वारा कार्य वेरीफाई होने के बाद ही हर स्टेज का भुगतान लिया जाता है।'
+                      : 'Zero advance risk — payments are strictly linked to on-site civil milestones verified by our civil engineers.'}
                   </p>
                 </div>
               </div>
 
-              {/* Area Input & Preset Chips */}
-              <div className="flex items-center gap-2">
-                <div className="relative">
-                  <input
-                    type="number"
-                    min="200"
-                    max="50000"
-                    step="50"
-                    value={builtUpArea}
-                    onChange={(e) => setBuiltUpArea(Math.max(0, Number(e.target.value)))}
-                    className="w-28 sm:w-32 h-9 px-3 text-sm font-bold text-foreground bg-background rounded-sm border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none"
-                    placeholder="1500"
-                  />
-                  <span className="absolute right-2.5 top-2 text-[10px] font-bold text-muted-foreground">SQ.FT</span>
-                </div>
-
-                <div className="text-right">
-                  <span className="text-[10px] uppercase font-bold text-muted-foreground block">
-                    {lang === 'hi' ? 'अनुमानित कुल लागत' : 'Est. Total Cost'}
-                  </span>
-                  <span className="text-sm sm:text-base font-extrabold text-accent-strong font-display">
-                    {formatCurrency(totalCost)}
-                  </span>
-                </div>
+              <div className="sm:text-right shrink-0 bg-card p-3 rounded-sm border border-border">
+                <span className="text-[10px] uppercase font-bold text-muted-foreground block">
+                  {lang === 'hi' ? 'शुरुआती दर' : 'Starting Rate'}
+                </span>
+                <span className="text-base sm:text-lg font-extrabold text-accent-strong font-display">
+                  ₹{rate.toLocaleString('en-IN')}<span className="text-xs text-muted-foreground font-normal"> /sq.ft.</span>
+                </span>
               </div>
             </div>
 
-            {/* Quick chips */}
-            <div className="mt-3 pt-3 border-t border-accent/20 flex flex-wrap items-center gap-1.5 text-xs">
-              <span className="text-[11px] text-muted-foreground mr-1">
-                {lang === 'hi' ? 'क्विक सेलेक्ट:' : 'Quick Select:'}
-              </span>
-              {[1000, 1200, 1500, 2000, 2500].map((size) => (
-                <button
-                  key={size}
-                  type="button"
-                  onClick={() => setBuiltUpArea(size)}
-                  className={`px-2 py-0.5 text-[11px] font-semibold rounded border transition-colors ${
-                    builtUpArea === size
-                      ? 'bg-accent text-accent-foreground border-accent'
-                      : 'bg-background text-muted-foreground border-border hover:border-primary/40'
-                  }`}
-                >
-                  {size} sq.ft
-                </button>
-              ))}
+            {/* Direct Across-the-Table Notice Banner */}
+            <div className="mt-3.5 pt-3 border-t border-accent/20 flex items-start gap-2.5 text-xs text-muted-foreground bg-accent/5 p-3 rounded-sm">
+              <Sparkles className="h-4 w-4 text-accent-strong shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                <strong className="text-foreground">
+                  {lang === 'hi' ? 'ऑफिस टेबल डिस्कशन व सटीक कोटेशन:' : 'Table Discussion & Final Quotation:'}
+                </strong>{' '}
+                {lang === 'hi'
+                  ? 'आपके प्लॉट की लोकेशन, मिट्टी की जांच (Soil Test), 3D एलिवेशन और मटेरियल स्पेसिफिकेशन के आधार पर अंतिम बजट व डिस्काउंट ऑफिस में टेबल डिस्कशन के बाद ही तय किया जाता है।'
+                  : 'Exact valuation, architectural layout, 3D elevation, and milestone agreements are customized in-person across the table at our Indore office based on your plot survey.'}
+              </p>
             </div>
           </div>
 
@@ -290,48 +255,41 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
                   {lang === 'hi' ? 'चरणबद्ध माइलस्टोन्स' : 'Payment Milestones'}
                 </span>
               </h4>
-              <span className="text-xs font-bold text-accent-strong">100% Total</span>
+              <span className="text-xs font-bold text-accent-strong">100% Total Schedule</span>
             </div>
 
             <div className="border border-border rounded-sm overflow-x-auto">
-              <table className="w-full min-w-[500px] text-left text-xs">
+              <table className="w-full min-w-[480px] text-left text-xs">
                 <thead className="bg-muted text-muted-foreground border-b border-border text-[11px] uppercase tracking-wider font-semibold">
                   <tr>
                     <th className="py-2.5 px-3 w-12 text-center">#</th>
-                    <th className="py-2.5 px-3">
-                      {lang === 'hi' ? 'निर्माण चरण / माइलस्टोन' : 'Milestone / Construction Stage'}
+                    <th className="py-2.5 px-4">
+                      {lang === 'hi' ? 'निर्माण चरण / माइलस्टोन विवरण' : 'Milestone / Civil Construction Stage'}
                     </th>
-                    <th className="py-2.5 px-3 w-24 text-center">
-                      {lang === 'hi' ? 'प्रतिशत' : 'Share (%)'}
-                    </th>
-                    <th className="py-2.5 px-3 w-32 text-right">
-                      {lang === 'hi' ? 'किस्त राशि (₹)' : 'Installment (₹)'}
+                    <th className="py-2.5 px-4 w-36 text-center">
+                      {lang === 'hi' ? 'भुगतान हिस्सा (%)' : 'Payment Share (%)'}
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-card">
                   {currentPlan.map((stage, idx) => {
-                    const installmentAmount = (totalCost * stage.percent) / 100;
                     return (
                       <tr key={idx} className="hover:bg-muted/40 transition-colors">
                         <td className="py-3 px-3 text-center font-display font-bold text-muted-foreground">
                           {String(idx + 1).padStart(2, '0')}
                         </td>
-                        <td className="py-3 px-3">
-                          <p className="font-semibold text-foreground">
+                        <td className="py-3 px-4">
+                          <p className="font-semibold text-foreground text-xs sm:text-sm">
                             {lang === 'hi' ? stage.milestoneHi : stage.milestone}
                           </p>
                           <p className="text-[11px] text-muted-foreground mt-0.5">
                             {lang === 'hi' ? stage.milestone : stage.milestoneHi}
                           </p>
                         </td>
-                        <td className="py-3 px-3 text-center">
-                          <span className="inline-block px-2 py-0.5 text-xs font-bold rounded bg-accent/15 text-accent-strong border border-accent/25">
+                        <td className="py-3 px-4 text-center">
+                          <span className="inline-block px-3 py-1 text-xs font-bold rounded bg-accent/15 text-accent-strong border border-accent/25">
                             {stage.percent}%
                           </span>
-                        </td>
-                        <td className="py-3 px-3 text-right font-display font-bold text-primary">
-                          {formatCurrency(installmentAmount)}
                         </td>
                       </tr>
                     );
@@ -339,14 +297,11 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
                 </tbody>
                 <tfoot className="bg-muted/80 font-bold border-t border-border">
                   <tr>
-                    <td colSpan={2} className="py-2.5 px-3 text-right uppercase text-[11px] tracking-wider text-foreground">
-                      {lang === 'hi' ? 'कुल योग (100% कार्य)' : 'Total Construction Budget (100%)'}:
+                    <td colSpan={2} className="py-3 px-4 uppercase text-xs tracking-wider text-foreground">
+                      {lang === 'hi' ? 'कुल कार्य समापन (100% माइलस्टोन कम्प्लीशन)' : 'Total Construction Milestones (100% Completion)'}:
                     </td>
-                    <td className="py-2.5 px-3 text-center text-accent-strong text-xs">
+                    <td className="py-3 px-4 text-center text-accent-strong text-sm">
                       100%
-                    </td>
-                    <td className="py-2.5 px-3 text-right text-sm text-primary font-display">
-                      {formatCurrency(totalCost)}
                     </td>
                   </tr>
                 </tfoot>
@@ -385,7 +340,7 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
               {lang === 'hi' ? 'बंद करें' : 'Close'}
             </Button>
             <Button variant="gold" size="sm" onClick={handleProceed} className="flex-1 sm:flex-none text-xs gap-1.5">
-              <span>{lang === 'hi' ? 'इस पैकेज का कोटेशन पाएं' : 'Get Quote with this Plan'}</span>
+              <span>{lang === 'hi' ? 'ऑफिस मीटिंग व कोटेशन बुक करें' : 'Book Office Consultation / Quote'}</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </div>
