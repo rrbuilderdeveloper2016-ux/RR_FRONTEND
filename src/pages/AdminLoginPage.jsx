@@ -1,9 +1,10 @@
 import rrLogo from '@/assets/rr-logo.png';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Lock, Mail, Eye, EyeOff, ShieldCheck, ArrowRight, Building2, AlertCircle } from 'lucide-react';
+import { Lock, Mail, Eye, EyeOff, ArrowRight, AlertCircle } from 'lucide-react';
 import { authService } from '../services/authService';
 import { Button } from '../components/ui/Button';
+import { usePopstateTrap } from '../hooks/usePopstateTrap';
 
 export function AdminLoginPage() {
   const navigate = useNavigate();
@@ -14,11 +15,21 @@ export function AdminLoginPage() {
   const [error, setError] = useState('');
 
   // If already authenticated, redirect straight to /admin
-  React.useEffect(() => {
+  useEffect(() => {
     if (authService.isAuthenticated()) {
       navigate('/admin', { replace: true });
     }
   }, [navigate]);
+
+  // Trap back navigation: If user lands on login page (e.g. after logout or directly),
+  // pressing the browser Back button will safely route to public homepage instead of exposing protected history
+  usePopstateTrap({
+    enabled: true,
+    lockCurrent: true,
+    onBackAttempt: () => {
+      navigate('/', { replace: true });
+    },
+  });
 
   if (authService.isAuthenticated()) {
     return null;
@@ -57,7 +68,6 @@ export function AdminLoginPage() {
           <p className="text-xs text-muted-foreground">
             RR Builder &amp; Developer, Indore • Secure CRM Desk
           </p>
-
         </div>
 
         {/* Error Alert */}
@@ -124,8 +134,6 @@ export function AdminLoginPage() {
           </Button>
         </form>
 
-
-
         <div className="border-t border-border pt-4 text-center">
           <Link to="/" className="text-xs text-primary font-semibold hover:underline">
             ← Return to Public Website
@@ -135,3 +143,5 @@ export function AdminLoginPage() {
     </div>
   );
 }
+
+export default AdminLoginPage;

@@ -38,6 +38,7 @@ import {
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { inquiryService } from '../services/inquiryService';
+import { usePopstateTrap } from '../hooks/usePopstateTrap';
 import { Button } from '../components/ui/Button';
 
 // Play pleasant web audio chime on new notification
@@ -112,9 +113,22 @@ export function AdminPage() {
   const [editingNotes, setEditingNotes] = useState('');
   const [saveSuccess, setSaveSuccess] = useState(false);
 
+    const [backBlockedNotice, setBackBlockedNotice] = useState(false);
+
+  // Trap browser Back navigation on sensitive Admin CRM page
+  usePopstateTrap({
+    enabled: true,
+    lockCurrent: true,
+    onBackAttempt: () => {
+      setBackBlockedNotice(true);
+      setTimeout(() => setBackBlockedNotice(false), 3500);
+    },
+  });
+
   const handleLogout = () => {
     authService.logout();
-    navigate('/admin/login', { replace: true });
+    window.history.replaceState(null, "", "/admin/login");
+    navigate("/admin/login", { replace: true });
   };
 
   const handleChangePasswordSubmit = async (e) => {
@@ -446,8 +460,15 @@ export function AdminPage() {
     return searchMatch && categoryMatch && statusMatch;
   });
 
-  return (
+    return (
     <div className="min-h-screen bg-muted/30 pb-20">
+      {/* Back button popstate lock alert */}
+      {backBlockedNotice && (
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 rounded-md border border-accent/40 bg-primary/95 text-hero-foreground px-4 py-2.5 shadow-2xl flex items-center gap-2.5 text-xs font-semibold backdrop-blur-sm animate-in fade-in slide-in-from-top duration-200">
+          <ShieldAlert className="h-4 w-4 text-accent shrink-0" />
+          <span>Back navigation is locked in Admin CRM. Use the Logout button to exit safely.</span>
+        </div>
+      )}
       {/* Top Floating Live Toast Notification */}
       {liveToast && (
         <div className="fixed top-20 right-4 z-50 max-w-sm animate-bounce rounded-md border-2 border-accent bg-primary text-hero-foreground p-4 shadow-2xl">
