@@ -156,7 +156,7 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
                       onChange={() => {}}
                       className="h-3.5 w-3.5 accent-accent"
                     />
-                    <span>{idx + 1}. {opt}</span>
+                    <span>{opt}</span>
                   </label>
                 );
               })}
@@ -193,7 +193,7 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
                         onChange={() => setTimeline(item)}
                         className="h-3.5 w-3.5 accent-accent"
                       />
-                      <span>{idx + 1}. {item}</span>
+                      <span>{item}</span>
                     </label>
                   );
                 })}
@@ -214,7 +214,7 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
                 <label className="block text-[11px] font-bold text-muted-foreground mb-1">
-                  1. Name *
+                  Name *
                 </label>
                 <input
                   required
@@ -228,7 +228,7 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
 
               <div>
                 <label className="block text-[11px] font-bold text-muted-foreground mb-1">
-                  2. Contact No. *
+                  Contact No. *
                 </label>
                 <input
                   required
@@ -242,7 +242,7 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
 
               <div>
                 <label className="block text-[11px] font-bold text-muted-foreground mb-1">
-                  3. Mail ID
+                  Mail ID
                 </label>
                 <input
                   type="email"
@@ -255,7 +255,7 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
 
               <div>
                 <label className="block text-[11px] font-bold text-muted-foreground mb-1">
-                  4. {activeTab === 'buy' ? 'Budget *' : 'Demand (Asking Price) *'}
+                  {activeTab === 'buy' ? 'Budget *' : 'Demand (Asking Price) *'}
                 </label>
                 <input
                   required
