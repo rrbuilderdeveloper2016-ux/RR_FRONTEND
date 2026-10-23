@@ -73,34 +73,34 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-muted/60">
-          <div className="flex items-center gap-2.5">
-            <span className="p-2 rounded-sm bg-primary/10 text-primary">
+        <div className="flex items-start justify-between gap-3 px-4 sm:px-5 py-3.5 sm:py-4 border-b border-border bg-muted/60">
+          <div className="flex items-start gap-2.5 min-w-0">
+            <span className="p-2 rounded-sm bg-primary/10 text-primary shrink-0 mt-0.5">
               <FileText className="h-5 w-5" />
             </span>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="eyebrow text-[10px]">OFFICIAL MILESTONE SCHEDULE</span>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-0.5">
+                <span className="eyebrow text-[10px] text-accent-strong font-bold">OFFICIAL MILESTONES</span>
                 <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-accent/20 text-accent-strong border border-accent/30">
                   {lang === 'hi' ? 'पारदर्शी भुगतान' : 'TRANSPARENT TERMS'}
                 </span>
               </div>
-              <h2 className="font-display text-lg sm:text-xl font-bold text-primary">
+              <h2 className="font-display text-base sm:text-xl font-bold text-primary leading-tight">
                 {lang === 'hi' ? 'निर्माण भुगतान योजना व माइलस्टोन्स' : 'Construction Payment Schedule'}
               </h2>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Language Switcher */}
             <button
               type="button"
               onClick={() => setLang(lang === 'en' ? 'hi' : 'en')}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-sm border border-border text-xs font-semibold bg-background hover:bg-muted transition-colors text-foreground"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-sm border border-border text-xs font-semibold bg-background hover:bg-muted transition-colors text-foreground"
               title="Toggle Language"
             >
-              <Languages className="h-3.5 w-3.5 text-accent-strong" />
-              <span>{lang === 'en' ? 'हिंदी में देखें' : 'View in English'}</span>
+              <Languages className="h-3.5 w-3.5 text-accent-strong shrink-0" />
+              <span>{lang === 'en' ? 'हिंदी में देखें' : 'In English'}</span>
             </button>
 
             {/* Print button */}
@@ -324,9 +324,9 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
         </div>
 
         {/* Modal Bottom Actions Footer */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-5 py-3.5 border-t border-border bg-muted/60">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <PhoneCall className="h-4 w-4 text-accent-strong" />
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-3.5 border-t border-border bg-muted/60">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground w-full sm:w-auto justify-center sm:justify-start">
+            <PhoneCall className="h-4 w-4 text-accent-strong shrink-0" />
             <span>
               Direct Consultation:{' '}
               <a href="tel:+916232570809" className="font-bold text-foreground hover:text-accent-strong">
@@ -335,13 +335,23 @@ export function PaymentPlanModal({ packageId, isOpen, onClose, onSelectPackage }
             </span>
           </div>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <Button variant="outline" size="sm" onClick={onClose} className="flex-1 sm:flex-none text-xs">
+          <div className="flex items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onClose}
+              className="px-4 h-auto min-h-[42px] py-2 text-xs font-semibold shrink-0"
+            >
               {lang === 'hi' ? 'बंद करें' : 'Close'}
             </Button>
-            <Button variant="gold" size="sm" onClick={handleProceed} className="flex-1 sm:flex-none text-xs gap-1.5">
+            <Button
+              variant="gold"
+              size="sm"
+              onClick={handleProceed}
+              className="flex-1 sm:flex-none h-auto min-h-[42px] py-2 px-3.5 text-xs font-bold leading-snug text-center justify-center gap-1.5 whitespace-normal"
+            >
               <span>{lang === 'hi' ? 'ऑफिस मीटिंग व कोटेशन बुक करें' : 'Book Office Consultation / Quote'}</span>
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-3.5 w-3.5 shrink-0" />
             </Button>
           </div>
         </div>
