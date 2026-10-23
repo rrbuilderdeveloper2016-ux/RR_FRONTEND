@@ -146,8 +146,7 @@ export const initialProjects = [
     price: null,
     image: "/projects/rr-villa-omaxe-1.jpg",
     images: [
-      "/projects/rr-villa-omaxe-1.jpg",
-      "/projects/rr-grand-villa-elevation.jpg"
+      "/projects/rr-villa-omaxe-1.jpg"
     ],
     videos: [],
     description: "A prestigious 5 BHK residential villa spanning 1,500 sq.ft. in the landmark township of Omaxe 1, Bypass Indore. Built with earthquake-resistant RCC structure, modular kitchen, private garden, Sagwan woodwork, and modern rainwater harvesting.",
@@ -167,10 +166,8 @@ export const initialProjects = [
     category: "Residential",
     status: "Ongoing",
     price: null,
-    image: "/projects/rr-grand-villa-render.jpg",
+    image: "/projects/rr-villa-omaxe-1-1.jpg",
     images: [
-      "/projects/rr-grand-villa-render.jpg",
-      "/projects/rr-grand-villa-banner.jpg",
       "/projects/rr-villa-omaxe-1-1.jpg",
       "/projects/rr-villa-omaxe-1-2.jpg",
       "/projects/rr-villa-omaxe-1-3.jpg"
