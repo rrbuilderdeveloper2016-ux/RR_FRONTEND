@@ -7,11 +7,13 @@ import { Button } from '../ui/Button';
 export function ProjectCard({ project }) {
   return (
     <article className="group overflow-hidden rounded-sm border border-border bg-card shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-hover">
-      <div className={`relative h-56 overflow-hidden ${project.crop || 'crop-project-1'}`}>
+      <div className="relative h-56 overflow-hidden bg-muted">
         <img
-          src={projectsImage}
+          src={project.image || projectsImage}
           alt={project.name}
-          className="crop-project-image"
+          className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+            !project.image ? (project.crop || "crop-project-1") + " crop-project-image" : "object-cover"
+          }`}
           loading="lazy"
         />
         <span className="absolute left-3 top-3 rounded-sm bg-primary px-2.5 py-1 text-[11px] font-bold text-hero-foreground shadow">
@@ -37,7 +39,11 @@ export function ProjectCard({ project }) {
         <div className="mt-4 border-t border-border pt-4">
           <p className="text-xs text-muted-foreground font-medium">{project.type}</p>
           <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-            <strong className="text-sm font-bold text-primary">{project.price}</strong>
+            {project.price ? (
+              <strong className="text-sm font-bold text-primary">{project.price}</strong>
+            ) : (
+              <span className="text-xs font-semibold text-accent-strong uppercase tracking-wider">{project.status === "Ongoing" ? "Ongoing Development" : "Completed Landmark"}</span>
+            )}
             <Link to={`/projects/${project.id}`}>
               <Button variant="navy" size="sm">
                 View Project <ArrowRight className="h-3.5 w-3.5 ml-1" />
