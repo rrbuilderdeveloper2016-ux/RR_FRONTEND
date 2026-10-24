@@ -5,7 +5,7 @@ import { Button } from '../ui/Button';
 import { trackLead } from '../../utils/metaPixel';
 
 const propertyOptions = ['Plot', 'Land', 'Flat', 'House / Bungalow', 'Commercial'];
-const timelineOptions = ['Urgent', '1 – 3 Months', '3 – 6 Months', 'More than 6 Months / Flexible'];
+const timelineOptions = ['1 – 3 Months', '3 – 6 Months', 'More than 6 Months / Flexible'];
 
 export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
   const [activeTab, setActiveTab] = useState(defaultMode); // 'buy' | 'sell'
@@ -173,7 +173,7 @@ export function BuySellIntakeForm({ defaultMode = 'buy', className = '' }) {
                 </h4>
                 <Clock className="h-4 w-4 text-accent-strong" />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {timelineOptions.map((item, idx) => {
                   const active = timeline === item;
                   return (
