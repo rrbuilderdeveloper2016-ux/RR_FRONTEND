@@ -171,6 +171,12 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* CLIENT SPECIFIC: 5 CONSTRUCTION PACKAGES */}
+      <ConstructionPackages />
+
+      {/* CLIENT SPECIFIC: 10 SPECIALITIES */}
+      <OurSpeciality />
+
       {/* CLIENT SPECIFIC: BUY / SELL PROPERTY INTAKE SECTION */}
       <section className="py-16 bg-muted/40 border-y border-border">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
@@ -214,12 +220,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* CLIENT SPECIFIC: 5 CONSTRUCTION PACKAGES */}
-      <ConstructionPackages />
-
-      {/* CLIENT SPECIFIC: 10 SPECIALITIES */}
-      <OurSpeciality />
 
             {/* Featured Projects Section */}
       <section className="bg-primary py-16 text-hero-foreground">

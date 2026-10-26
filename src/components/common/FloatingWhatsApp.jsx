@@ -28,8 +28,8 @@ const QUICK_TOPICS = [
     msg: "Hello RR Builders! I visited your website and I am interested in buying a property (Flat/Villa/Plot) in Indore. Please share ongoing project details.",
   },
   {
-    label: "📄 Construction Payment Plan Inquiry",
-    msg: "Hello RR Builders! I reviewed your milestone payment schedule on your website. I want to discuss cost estimation & agreement for my property.",
+    label: "📐 Get Construction Cost Estimate",
+    msg: "Hello RR Builders! I visited your website and would like to get a cost estimate and layout consultation for my plot in Indore.",
   },
 ];
 

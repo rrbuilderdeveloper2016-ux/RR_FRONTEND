@@ -9,7 +9,7 @@ export function ConsultationForm() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    serviceInterest: 'Buy Property',
+    serviceInterest: 'Build on My Plot',
     preferredLocation: '',
     message: '',
   });
@@ -88,9 +88,9 @@ export function ConsultationForm() {
         value={formData.serviceInterest}
         onChange={(e) => setFormData({ ...formData, serviceInterest: e.target.value })}
       >
+        <option value="Build on My Plot">Build on My Plot</option>
         <option value="Buy Property">I want to Buy Property</option>
         <option value="Sell Property">I want to Sell Property</option>
-        <option value="Build on My Plot">Build on My Plot</option>
         <option value="Investment / Other">Commercial / Investment</option>
       </select>
 

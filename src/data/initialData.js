@@ -9,7 +9,7 @@ export { heroImage, servicesImage, projectsImage, indoreImage, brandCoverImage }
 export const initialProperties = [
   {
     id: "rr-shree-residency",
-    name: "RR Shree Residency",
+    name: "Shree Residency",
     location: "Super Corridor, Indore",
     locationSlug: "super-corridor",
     bhk: "2 & 3 BHK",
@@ -27,7 +27,7 @@ export const initialProperties = [
   },
   {
     id: "rr-green-villas",
-    name: "RR Green Villas",
+    name: "Green Villas",
     location: "Bicholi Mardana, Indore",
     locationSlug: "bicholi-mardana",
     bhk: "3 & 4 BHK",
@@ -45,7 +45,7 @@ export const initialProperties = [
   },
   {
     id: "rr-business-hub",
-    name: "RR Business Hub",
+    name: "Business Hub",
     location: "Vijay Nagar, Indore",
     locationSlug: "vijay-nagar",
     bhk: "Shops & Offices",
@@ -63,7 +63,7 @@ export const initialProperties = [
   },
   {
     id: "rr-orchid-heights",
-    name: "RR Orchid Heights",
+    name: "Orchid Heights",
     location: "Nipania, Indore",
     locationSlug: "nipania",
     bhk: "2 & 3 BHK",
@@ -81,7 +81,7 @@ export const initialProperties = [
   },
   {
     id: "rr-premium-plots",
-    name: "RR Premium Plots",
+    name: "Premium Plots",
     location: "Rau, Indore",
     locationSlug: "rau",
     bhk: "Residential Plots",
@@ -99,7 +99,7 @@ export const initialProperties = [
   },
   {
     id: "rr-corporate-square",
-    name: "RR Corporate Square",
+    name: "Corporate Square",
     location: "AB Road, Indore",
     locationSlug: "ab-road",
     bhk: "Premium Offices",
