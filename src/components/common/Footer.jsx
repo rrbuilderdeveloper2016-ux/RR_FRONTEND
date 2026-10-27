@@ -124,15 +124,31 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Copyright */}
+      {/* Copyright & Developer Credits */}
       <div className="border-t border-hero-foreground/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-[11px] sm:flex-row sm:justify-between lg:px-6">
-          <span>© 2026 RR Builder &amp; Developer. All Rights Reserved.</span>
-          <span>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-[11px] text-center sm:flex-row sm:text-left lg:px-6">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+            <span>© 2026 RR Builder &amp; Developer. All Rights Reserved.</span>
+            <span className="hidden sm:inline opacity-30">|</span>
+            <span className="text-hero-muted/90">
+              Developed by{" "}
+              <a
+                href="https://vyonixtechno.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent hover:text-accent/80 hover:underline transition-colors inline-flex items-center gap-0.5"
+              >
+                <span>VyonixTechno Pvt Ltd</span>
+                <span className="text-[10px] leading-none">↗</span>
+              </a>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
             <Link to="/privacy-policy" className="hover:text-accent transition">Privacy Policy</Link>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span className="opacity-30">|</span>
             <Link to="/terms-and-conditions" className="hover:text-accent transition">Terms &amp; Conditions</Link>
-          </span>
+          </div>
         </div>
       </div>
     </footer>

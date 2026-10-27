@@ -1016,6 +1016,25 @@ export function AdminPage() {
         </div>
       </main>
 
+      {/* Admin Portal Footer */}
+      <footer className="mx-auto max-w-7xl px-4 pt-10 text-center text-xs text-muted-foreground sm:px-6">
+        <div className="border-t border-border/80 pt-6 flex flex-col items-center justify-between gap-2 sm:flex-row text-[11px]">
+          <span>© 2026 RR Builder &amp; Developer · Confidential Internal CRM Desk</span>
+          <span>
+            Developed by{" "}
+            <a
+              href="https://vyonixtechno.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary hover:text-accent hover:underline transition-colors inline-flex items-center gap-0.5"
+            >
+              <span>VyonixTechno Pvt Ltd</span>
+              <span className="text-[10px]">↗</span>
+            </a>
+          </span>
+        </div>
+      </footer>
+
       {/* Full Lead Dossier Modal */}
       {selectedInquiry && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">

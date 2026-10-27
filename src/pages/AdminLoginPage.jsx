@@ -134,10 +134,24 @@ export function AdminLoginPage() {
           </Button>
         </form>
 
-        <div className="border-t border-border pt-4 text-center">
-          <Link to="/" className="text-xs text-primary font-semibold hover:underline">
-            ← Return to Public Website
-          </Link>
+        <div className="border-t border-border pt-4 text-center space-y-2">
+          <div>
+            <Link to="/" className="text-xs text-primary font-semibold hover:underline">
+              ← Return to Public Website
+            </Link>
+          </div>
+          <p className="text-[11px] text-muted-foreground pt-1">
+            Developed by{" "}
+            <a
+              href="https://vyonixtechno.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary hover:text-accent hover:underline transition-colors inline-flex items-center gap-0.5"
+            >
+              <span>VyonixTechno Pvt Ltd</span>
+              <span className="text-[10px]">↗</span>
+            </a>
+          </p>
         </div>
       </div>
     </div>
